@@ -1,0 +1,107 @@
+<div class="page-header">
+  <h1>
+    Performances <i class="fa fa-microphone fa-1x"></i><small>  <%= current_user.checkin.venue.try(:name) %></small>
+    <%#= link_to icon('plus'), new_performance_path, class: "btn btn-lg btn-success" %>
+  </h1>
+</div>
+
+<div class="row isotope-container">
+<% @performances.each do |performance| %>
+ <% if performance.completed == false %>
+  <div class="col-xs-12 col-sm-12 col-md-4 col-lg-3 isotope-item">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Performance #<%= performance.id %></h3>
+      </div>
+      <div class="panel-body">
+        <dl>
+    <%# if performance.completed == false %>
+
+            <dt>Performer</dt>
+            <dd><%= performance.user.stagename %></dd>
+
+            <dd><%= image_tag performance.user.avatar, :height => '50px', :width => '50px', :class => 'img-square' %></dd>
+
+            <dt>Song</dt>
+            <dd>"<%= performance.song.title %>", originally performed by <%= performance.song.artist %></dd>
+
+
+            <div class="btn-group btn-group-justified">
+              <%= link_to icon('search-plus'), performance, class: "btn btn-primary" %>
+          </div>
+
+    <% elsif performance.completed == true %>
+
+    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-3 isotope-item">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">This Performance <%#= performance.id %> is done!</h3>
+      </div>
+      <div class="panel-body">
+        <dl>
+
+            <dd><%= performance.user.stagename %> sang "<%= performance.song.title %>"</dd>
+
+            <dt>Comment</dt>
+            <dd><%= performance.comment %></dd>
+
+            <dt>Rating</dt>
+            <dd><%= performance.rating %></dd>
+            <div class="btn-group btn-group-justified">
+              <%#= link_to icon('pencil'), new_review_path( :performance_id => params[:id] ), class: "btn btn-lg btn-success" %>
+              <%= link_to icon('remove'), '#', class: "btn btn-danger" %>
+            </div>
+    <% end %>
+        </dl>
+      </div>
+    </div>
+  </div>
+<% end %>
+</div>
+
+<!-- JavaScript for Isotope layout and quicksearch -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/3.1.8/imagesloaded.pkgd.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery.isotope/2.0.0/isotope.pkgd.min.js"></script>
+<script>
+  $(function() {
+    // quick search regex
+    var qsRegex;
+
+    // init Isotope
+    var $container = $('.isotope-container');
+
+    $container.imagesLoaded(function() {
+      $container.isotope({
+        itemSelector: '.isotope-item',
+        layoutMode: 'masonry',
+        filter: function() {
+          return qsRegex ? $(this).text().match( qsRegex ) : true;
+        }
+      })
+    });
+
+    // use value of search field to filter
+    var $quicksearch = $('#quicksearch').keyup( debounce( function() {
+      qsRegex = new RegExp( $quicksearch.val(), 'gi' );
+      $container.isotope();
+    }, 200 ) );
+
+  });
+
+  // debounce so filtering doesn't happen every millisecond
+  function debounce( fn, threshold ) {
+    var timeout;
+    return function debounced() {
+      if ( timeout ) {
+        clearTimeout( timeout );
+      }
+      function delayed() {
+        fn();
+        timeout = null;
+      }
+      timeout = setTimeout( delayed, threshold || 100 );
+    }
+  }
+</script>
+
+<!-- End responsive, Isotope-based layout example -->

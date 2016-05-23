@@ -1,0 +1,48 @@
+<!-- Responsive panel example-->
+
+<div class="row">
+  <div class="col-sm-offset-1 col-sm-10 col-md-offset-2 col-md-8">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Checkin #<%= @checkin.id %></h3>
+      </div>
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-md-12">
+            <dl class="dl-horizontal">
+              <dt>Is checked in</dt>
+              <dd><%= @checkin.is_checked_in %></dd>
+
+              <dt>User</dt>
+              <dd><%= @checkin.user.stagename %></dd>
+
+                <dd>
+                  <div class="inline-rating">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                  </div>
+                </dd>
+
+              <dt>Venue</dt>
+              <dd><%= @checkin.venue.name %></dd>
+
+            </dl>
+            <div class="btn-group btn-group-justified">
+              <%= link_to icon('chevron-left'), checkins_path, class: "btn btn-primary" %>
+              <%= link_to icon('stop'), edit_checkin_path(@checkin), class: "btn btn-danger" %></dd>
+              <%#= link_to icon('edit'), edit_checkin_path(@checkin), class: "btn btn-warning" %>
+              <%#= link_to icon('trash-o'), @checkin, method: :delete, data: { confirm: "Do you really want to delete this checkin?" }, class: "btn btn-danger" %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- End responsive panel example -->
+
+

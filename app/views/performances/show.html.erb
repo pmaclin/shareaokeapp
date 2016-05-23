@@ -1,0 +1,61 @@
+<!-- Responsive panel example-->
+<div class="row">
+  <div class="col-sm-offset-1 col-sm-10 col-md-offset-2 col-md-8">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Performance #<%= @performance.id %></h3>
+      </div>
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-md-12">
+            <dl class="dl-horizontal">
+
+              <dt>Performer</dt>
+              <dd><%= @performance.user.stagename %></dd>
+              <dd><%= image_tag @performance.user.avatar, :height => '100px', :width => '100px', :class => 'img-circle' %></dd>
+
+              <dt>Song</dt>
+              <dd>"<%= @performance.song.title %>" originally performed by <%= @performance.song.artist %></dd>
+
+            <hr>
+
+              <% if @performance.completed == false && current_user.is_dj == true %>
+              <p align="center">Hey DJ! You can't leave a review but you can click on the "X" button to disable any more reviews from being left by fans. Click on the "back" button to go back to the performance index page.</p>
+              <div class="btn-group btn-group-justified">
+                    <%= link_to icon('close'), edit_performance_path(), class: "btn btn-danger" %>
+                    <%= link_to icon('backward'), :performances, class: "btn btn-primary" %>
+              <% else %>
+                  <p align="center">Rate this performance</p>
+                  <p align ="center"><%= link_to icon('pencil'), new_review_path( :performance_id => params[:id] ), class: "btn btn-lg btn-success" %></p>
+                <% end %>
+              </div>
+            <div class="col-sm-12 col-md-4 col-lg-12">
+              <div class="panel-heading"><h3 class="panel-title"><%= @performance.reviews.count %> Review(s)</h3></div>
+              <% @performance.reviews.each do |review| %>
+
+                <li class="list-group-item"><font size="2">"<%= link_to review.headline %>..." <%= review.user.stagename %> rates this performance a <%= review.rating %> out of 5 mics.</font>
+
+                <% if review.rating == 1 %>
+                  <i class="fa fa-microphone fa-2x"></i> <!-- display one mic -->
+                  <% elsif review.rating == 2 %>
+                  <i class="fa fa-microphone fa-2x"></i><i class="fa fa-microphone fa-2x"></i><!-- display 2 mics -->
+                  <% elsif review.rating == 3 %>
+                  <i class="fa fa-microphone fa-2x"></i><i class="fa fa-microphone fa-2x"></i><i class="fa fa-microphone fa-2x"></i><!-- display 3 mics -->
+                  <% elsif review.rating == 4 %>
+                  <i class="fa fa-microphone fa-2x"></i><i class="fa fa-microphone fa-2x"></i><i class="fa fa-microphone fa-2x"></i><i class="fa fa-microphone fa-2x"></i><!-- display 4 mics -->
+                  <% elsif review.rating == 5 %>
+                  <i class="fa fa-microphone fa-2x"></i><i class="fa fa-microphone fa-2x"></i><i class="fa fa-microphone fa-2x"></i><i class="fa fa-microphone fa-2x"></i><i class="fa fa-microphone fa-2x"></i><!-- display 5 mics -->
+                </li>
+                <% end %>
+
+              <% end %> <!-- end do loop -->
+            </div> <!-- end div col for review section -->
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- End responsive panel example -->

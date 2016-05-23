@@ -1,0 +1,249 @@
+<!-- Responsive panel example-->
+<div class="row">
+  <div class="col-sm-offset-1 col-sm-12 col-md-offset-2 col-md-12 col-lg-offset-0 col-lg-12">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= @venue.name %></h3>
+      </div>
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-sm-6" "col-md-6" "col-lg-6">
+            <dl class="dl-horizontal">
+              <dt>Address</dt>
+              <dd><%= @venue.address %></dd>
+
+              <dt>City</dt>
+              <dd><%= @venue.city %></dd>
+
+              <dt>Description</dt>
+              <dd><%= @venue.description %></dd>
+
+<hr>
+             <dt><strong><font color="fffff"><%= @venue.checkins.count %></font></strong></dt>
+             <dd>Performers have checked in @ <%= @venue.name %> tonight!</dd>
+          </dl>
+<hr>
+    <% if current_user.present? %>
+            <div class="row">
+            <div class="col-sm-offset-1 col-sm-12 col-md-offset-2 col-md-12 col-lg-offset-0 col-lg-12">
+
+                <% if current_user.is_checked_in == true %>
+                          <%#= form_tag("/checkins/#{params[:id]}/check_out", method:"post") do %>
+                            <div align="center">
+                              <label for="Checkout" align="center" >Checkout of your current location if you want to check in @ <%= @venue.name %> </label>
+                                    <!-- <input align="right" type="submit" value="Checkout"> -->
+                                    <p><%= link_to icon('check'),"/checkins/#{params[:id]}/check_out", method:"post", class: "btn btn-lg btn-danger" %></p>
+                            </div>
+                          <%# end %>
+                <% else %>
+                     <div class="col-lg-12" align="center">
+                          <dt>Check In at <%= @venue.name %> <%= link_to icon('check'), new_checkin_path( :venue_id => params[:id], :user_id => (current_user.id) ), class: "btn btn-lg btn-success" %></dt>
+                    </div>
+              <% end %>
+            </div>
+    <% end %>
+            </div>
+          </div> <!-- end col-md-12 -->
+          <div class="col-sm-6" "col-md-6" "col-lg-6">
+            <dt align="center">Welcome to <%= @venue.name %></dt>
+              <div class="main-image-container" align="center">
+                <%= image_tag @venue.image, :height => '250px', :width => '250px', :class => 'img-circle', :alt => 'Image from the Venue' %>
+              </div>
+<!--                 <div align="center">
+                  <span><a href="#">Rate your experience @ <%= @venue.name %></a></span>
+                    <div class="inline-rating">
+                      <i class="fa fa-star fa-2x"></i>
+                      <i class="fa fa-star fa-2x"></i>
+                      <i class="fa fa-star fa-2x"></i>
+                      <i class="fa fa-star fa-2x"></i>
+                      <i class="fa fa-star fa-2x"></i>
+                    </div>
+                </div> -->
+          </div>
+        </div> <!-- end panel row -->
+      </div> <!-- end panel body -->
+    </div> <!-- end panel panel-default -->
+
+</div> <!-- end div class column offset -->
+
+    <div class="col-xs-12 col-md-12 col-lg-6">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Who's Checked In</h3>
+      </div>
+      <div class="panel-body">
+      <% @venue.checkins.each do |checkin| %>
+        <% if current_user.is_checked_in == false %>
+
+        <% else %>
+
+          <div class="row">
+            <ul class="list-group" align="center">
+              <li class="list-group-item">
+                <dt align="left">
+                <%= image_tag checkin.user.avatar, :height => '50px', :width => '50px', :class => 'img-circle' %>
+<!--                 </dt>
+                <dt align="left"> -->
+                <%= checkin.user.stagename %> <%= checkin.created_at.strftime("checked in on %B %d at %I: %M %p") %>
+                </dt>
+              </li>
+            </ul>
+          </div> <!-- end div row -->
+
+        <% end %> <!-- end if statement  -->
+      <% end %>  <!-- end do statement -->
+
+      </div>  <!-- end panel body -->
+    </div> <!-- end panel panel-default -->
+
+
+
+<!-- REQUEST QUEUE -->
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Request Queue</h3>
+      </div>
+      <div class="panel-body">
+        <div class="row">
+              <ul class="list-group" align="center">
+                <% @venue.requests.each do |request| %>
+
+                    <li class="list-group-item">
+                      <dt align="left">
+                        <%#= request.id %>
+<!--                       </dt>
+                      <dt align="left"> -->
+                        <%= image_tag request.user.avatar, :height => '50px', :width => '50px', :class => 'img-circle' %>
+                      </dt>
+                      <dt align="left">
+                        <%= request.user.stagename %> requested "<a href="/songs/<%= request.song_id %>"><%= request.song.try(:title) %></a>" by <%= request.song.try(:artist) %>
+                      </dt>
+                    </li>
+              </ul>
+                <% end %> <!-- end do -->
+          <!-- </div> --> <!-- end col -->
+        </div> <!-- end row -->
+      </div>  <!-- end panel body -->
+    </div> <!-- end panel panel-default -->
+
+
+<!-- PERFORMANCE QUEUE -->
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Performance Queue</h3>
+      </div>
+      <div class="panel-body">
+        <div class="row">
+          <% @venue.performances.each do |performance| %>
+            <% if performance.completed == true %>
+              <ul class="list-group" align="center">
+
+                    <li class="list-group-item">
+                      <dt align="left">
+                        <%= image_tag performance.user.avatar, :height => '50px', :width => '50px', :class => 'img-circle' %>
+<!--                       </dt>
+                      <dt align="left"> -->
+                      <%= performance.user.stagename %> <%= performance.created_at.strftime("performed on %B %d at %I: %M %p") %>
+                      </dt>
+<!--                     <div align="left">
+                      <span><a href="#">Rate this performance?</a></span>
+                        <div class="inline-rating">
+                          <i class="fa fa-microphone fa-2x"></i>
+                          <i class="fa fa-microphone fa-2x"></i>
+                          <i class="fa fa-microphone fa-2x"></i>
+                          <i class="fa fa-microphone fa-2x"></i>
+                          <i class="fa fa-microphone fa-2x"></i>
+                        </div>
+                    </div> -->
+                    </li>
+                  <% end %> <!-- end if -->
+              </ul>
+          <% end %> <!-- end do -->
+          <!-- </div> --> <!-- end col -->
+        </div> <!-- end row -->
+      </div>  <!-- end panel body -->
+    </div> <!-- end panel panel-default -->
+</div>
+
+<!-- RIGHT HAND COLUMN -->
+<div class="col-xs-12 col-md-12 col-lg-6">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+    <h3 class="panel-title">LR - Ad Queue - Venue Placed Ads</h3>
+    </div>
+    <div class="panel-body">
+      <div class="row">
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+          <a href="#" class="thumbnail">
+            <%= image_tag "Karaoke.jpg", :height => '200px', :width => '200px', :class => 'img-square', :alt => 'Image from the Venue' %>
+          </a>
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-3 col-lg-6">
+          <h4 align="center">KARAOKE! | <small>Starts @ 7pm</small></h4>
+          <p>Come and join us for a night of karaoke!</p>
+<!--           <ul style="list-style-type:none">
+            <li>Drink Special One</li>
+            <li>Drink Special Tow</li>
+            <li>Drink Special Three</li>
+          </ul> -->
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-6 col-sm-6 col-md-3 col-lg-6">
+          <a href="#" class="thumbnail">
+            <%= image_tag "Happy_Hour.png", :height => '200px', :width => '200px', :class => 'img-square', :alt => 'Image from the Venue' %>
+          </a>
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-3 col-lg-6">
+          <h4 align="center">Happy Hour! | <small>5-7pm</small></h4>
+          <ul style="list-style-type:none">
+            <li>$5 Margharitas!</li>
+            <li>$2 PBR</li>
+            <li>Craft Beer Specials on tap</li>
+          </ul>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+          <a href="#" class="thumbnail">
+            <%= image_tag "Bartenders.png", :height => '200px', :width => '200px', :class => 'img-square', :alt => 'Image from the Venue' %>
+          </a>
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-3 col-lg-6">
+          <h4 align="center">Meet Your Bartenders </h4>
+          <ul style="list-style-type:none">
+            <li>Sally Sue</li>
+            <li>Amy Smith</li>
+            <li>John Tapper</li>
+          </ul>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+          <a href="#" class="thumbnail">
+            <%= image_tag "Specials.jpg", :height => '200px', :width => '200px', :class => 'img-square', :alt => 'Image from the Venue' %>
+          </a>
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-3 col-lg-6">
+          <h4 align="center">Weekly Specials</h4>
+          <ul style="list-style-type:none">
+            <li>Monday: </li>
+            <li>Tuesday: </li>
+            <li>Wednesday: </li>
+            <li>Thursday: </li>
+            <li>Friday: </li>
+          </ul>
+        </div>
+      </div>
+      <br>
+    </div>
+  </div>
+</div>
+
+</div> <!-- end div row -->
+
+<!-- End responsive panel example -->
+
+

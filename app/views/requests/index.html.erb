@@ -1,0 +1,116 @@
+<div class="page-header">
+  <h1>
+    Requests<i class="fa fa-question fa-lg" ></i><small>  <%= current_user.checkin.venue.try(:name) %></small>
+    <%#= link_to icon('music'), '#', class: "btn btn-lg btn-success" %>
+  </h1>
+</div>
+
+<div class="row isotope-container">
+  <% @requests.uniq.each do |request| %>
+
+    <% if request.available == false %>
+      <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 isotope-item">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">Request #<%= request.id %> has been removed from the queue.</h3>
+          </div>
+            <div class="panel-body">
+                  <dl>
+                    <dt></dt>
+                    <dd><%= image_tag request.user.avatar, height: '50px', width: '50px', :class => 'img-square' %></dd>
+
+                    <dd><%= request.user.stagename %> requested "<%= request.song.title %>"" by <%= request.song.artist %></dd>
+                  <br>
+                    <dt>Venue</dt>
+                    <dd><%= request.venue.try(:name) %></dd>
+                  </dl>
+            </div>
+        </div>
+      </div>
+
+     <% else %>
+
+     <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 isotope-item">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Request #<%= request.id %></h3>
+        </div>
+            <div class="panel-body">
+
+                <dl>
+                  <dt></dt>
+                  <dd><%= image_tag request.user.avatar, height: '50px', width: '50px', :class => 'img-square' %></dd>
+
+                  <dd><%= request.user.stagename %> requested "<%= request.song.title %>"" by <%= request.song.artist %></dd>
+<br>
+                  <dt>Venue</dt>
+                  <dd><%= request.venue.try(:name) %></dd>
+                </dl>
+
+                  <%# if current_user.is_dj == true %>
+                          <div class="btn-group btn-group-justified">
+                            <%= link_to icon('microphone'), new_performance_path( :song_id => (request.song_id), :user_id => (request.user_id), :venue_id => (request.venue_id) ), data: { confirm: "Hey DJ - If this performer is done you can send them over to the performance queue by clicking 'Ok' below. Coolio?" }, class: "btn btn-success" %>
+
+                            <%= link_to icon('close'), edit_request_path(request), class: "btn btn-danger" %>
+
+                            <%= link_to icon('minus'), request, method: :delete, data: { confirm: "Do you really want to delete this request?" }, class: "btn btn-warning" %>
+                          </div>
+                  <%# end %>
+            </div> <!-- panel body -->
+
+      </div> <!-- panel panel default -->
+
+     </div> <!-- div column -->
+     <% end %> <!-- end false each do loop -->
+     <% end %> <!-- end true each do loop -->
+</div> <!-- div row isotope container -->
+
+<%# end %>
+
+
+<!-- JavaScript for Isotope layout and quicksearch -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/3.1.8/imagesloaded.pkgd.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery.isotope/2.0.0/isotope.pkgd.min.js"></script>
+<script>
+  $(function() {
+    // quick search regex
+    var qsRegex;
+
+    // init Isotope
+    var $container = $('.isotope-container');
+
+    $container.imagesLoaded(function() {
+      $container.isotope({
+        itemSelector: '.isotope-item',
+        layoutMode: 'masonry',
+        filter: function() {
+          return qsRegex ? $(this).text().match( qsRegex ) : true;
+        }
+      })
+    });
+
+    // use value of search field to filter
+    var $quicksearch = $('#quicksearch').keyup( debounce( function() {
+      qsRegex = new RegExp( $quicksearch.val(), 'gi' );
+      $container.isotope();
+    }, 200 ) );
+
+  });
+
+  // debounce so filtering doesn't happen every millisecond
+  function debounce( fn, threshold ) {
+    var timeout;
+    return function debounced() {
+      if ( timeout ) {
+        clearTimeout( timeout );
+      }
+      function delayed() {
+        fn();
+        timeout = null;
+      }
+      timeout = setTimeout( delayed, threshold || 100 );
+    }
+  }
+</script>
+
+<!-- End responsive, Isotope-based layout example -->

@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  is_checked_in: false
+  user_id: 
+  venue_id: 
+
+two:
+  is_checked_in: false
+  user_id: 
+  venue_id: 

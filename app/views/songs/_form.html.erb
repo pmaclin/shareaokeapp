@@ -1,0 +1,17 @@
+<%= simple_form_for(@song) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :artist %>
+    <%= f.input :art, required: false, hint: "Upload album or artist art" %>
+    <%= f.hidden_field :art_cache %>
+    <%= f.input :title %>
+    <%= f.input :genre %>
+    <%= f.input :lyrics %>
+    <%#= f.association :user %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

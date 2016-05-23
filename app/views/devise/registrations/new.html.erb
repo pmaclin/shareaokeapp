@@ -1,0 +1,104 @@
+<!-- <div class="jumbotron">
+  <div class="container">
+    <%#= image_tag "Karaoke_Guy.png", :height => '510px', :width => '1213px', :class => 'img-square', :alt => 'Dude Doing Shareaoke' %>
+    <h1>Hello, world!</h1>
+      <p>...</p>
+      <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p>
+  </div>
+</div> -->
+
+<div class="container">
+
+<div class="row">
+<!-- COLUMN #1 -->
+    <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8" align="center">
+      <h2 align="center"><em>Karaoke Revisited</em></h2>
+        Karaoke + Social Networking + Your town's Got Talent = <em><u>Shareaoke</u></em><br><br>
+        <%= image_tag "Karaoke.jpg", :height => '360px', :width => '600px', :class => 'img-circle', :alt => 'Karaoke Singers' %>
+        <!-- <p>Karaoke + Social Networking = Shareaoke</p> -->
+    </div>
+      <br>
+      <br>
+<!-- COLUMN #2 -->
+    <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+      <h2>Sign up</h2>
+      <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+        <%= f.error_notification %>
+
+        <div class="form-inputs">
+          <%= f.input :email, required: true, autofocus: true %>
+          <%= f.input :stagename, required: true, hint: "Choose wisely, my friend! Stage Name cannot be changed." %>
+          <%= f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>
+          <%= f.input :password_confirmation, required: true %>
+        </div>
+
+        <div class="form-actions">
+          <%= f.button :submit, "Sign up" %>
+        </div>
+      <% end %>
+      <%= render "devise/shared/links" %>
+    </div>
+
+  </div> <!-- end row #1 -->
+
+<!-- Row #2 -->
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8" align="left">
+     <h3 align="left"><em>How it Works</em></h3>
+      <div class="media" align="left">
+        <div class="media-left">
+          <a href="#">
+            <%= image_tag "Pencil.png", :height => '70px', :width => '70px', :class => 'img-square', :alt => 'Happy White People' %>
+          </a>
+        </div>
+        <div class="media-left">
+          <h4 class="media-heading">Sign Up</h4>
+          Takes less than 20 seconds if you're good with your thumbs, and there's nothing to download - all you need is a working celly and a valid email address. Customize your profile and you're in business.
+        </div>
+      </div>
+      <div class="media" align="left">
+        <div class="media-left">
+          <a href="#">
+            <%= image_tag "Search.png", :height => '70px', :width => '70px', :class => 'img-square', :alt => 'Happy White People' %>
+          </a>
+        </div>
+        <div class="media-left">
+          <h4 class="media-heading">Check In</h4>
+          Find your bar and check in.
+        </div>
+      </div>
+      <div class="media" align="left">
+        <div class="media-left">
+          <a href="#">
+            <%= image_tag "Music.png", :height => '70px', :width => '70px', :class => 'img-square', :alt => 'Happy White People' %>
+          </a>
+        </div>
+        <div class="media-left">
+          <h4 class="media-heading">Request your song</h4>
+          Here's the cool part - Search the extensive Shareaoke playlist to find the song you want to sing. Select it and confirm the request. The DJ will automatically get your request and you'll be put in queue. That's it. Punto y Basta.
+        </div>
+      </div>
+      <div class="media" align="left">
+        <div class="media-left">
+          <a href="#">
+            <%= image_tag "Mic.png", :height => '70px', :width => '70px', :class => 'img-square', :alt => 'Happy White People' %>
+          </a>
+        </div>
+        <div class="media-left">
+          <h4 class="media-heading">Perform</h4>
+          Shed the nerves and do what you came to do!  When you're done performing the DJ will move you out of that queue and others can rate the performance with Shareaoke's simple rating system.
+        </div>
+      </div>
+      <div class="media" align="left">
+        <div class="media-left">
+          <a href="#">
+            <%= image_tag "Repeat.png", :height => '70px', :width => '70px', :class => 'img-square', :alt => 'Happy White People' %>
+          </a>
+        </div>
+        <div class="media-left">
+          <h4 class="media-heading">Repeat</h4>
+          Nuff said, Superstar. It's now your world...and we're all just livin' in it.
+        </div>
+      </div>
+  </div>
+</div>

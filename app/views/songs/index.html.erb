@@ -1,0 +1,107 @@
+<div class="page-header">
+  <h1>
+    Songs
+    <i class="fa fa-music fa-1x"></i><small> Find your song</small>
+    <% if current_user.is_admin == true  %>
+      <%= link_to icon('music'), new_song_path, class: "btn btn-lg btn-success" %>
+    <% end %>
+
+  </h1>
+</div>
+
+<!-- Responsive, Isotope-based layout example -->
+
+<div class="row">
+  <div class="col-xs-12">
+    <input type="text" id="quicksearch" placeholder="Search Songs (start typing)" class="form-control">
+  </div>
+</div>
+
+<hr>
+
+<div class="row isotope-container">
+<% @songs.each do |song| %>
+  <div class="col-xs-12 col-sm-12 col-md-4 col-lg-3 isotope-item">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Song #<%= song.id %></h3>
+      </div>
+      <div class="panel-body">
+        <dl>
+          <dt>Artist</dt>
+          <dd><%= song.artist %></dd>
+
+          <dd><%= image_tag song.art, :height => '50px', :width => '50px', :class => 'img-square'  %></dd>
+
+          <dt>Title</dt>
+          <dd><%= song.title %></dd>
+
+          <dt>Genre</dt>
+          <dd><%= song.genre %></dd>
+
+          <!-- <dt>Lyrics</dt> -->
+          <dd><%#= song.lyrics %></dd>
+
+          <!-- <dt>User</dt> -->
+          <dd><%#= song.user %></dd>
+        </dl>
+
+        <div class="btn-group btn-group-justified">
+          <%= link_to icon('play-circle'), song, class: "btn btn-primary" %>
+
+          <%= link_to icon('edit'), edit_song_url(song), class: "btn btn-warning" %>
+
+          <%= link_to icon('trash-o'), song, method: :delete, data: { confirm: "Do you really want to delete this song?" }, class: "btn btn-danger" %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+</div>
+
+<!-- JavaScript for Isotope layout and quicksearch -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/3.1.8/imagesloaded.pkgd.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery.isotope/2.0.0/isotope.pkgd.min.js"></script>
+<script>
+  $(function() {
+    // quick search regex
+    var qsRegex;
+
+    // init Isotope
+    var $container = $('.isotope-container');
+
+    $container.imagesLoaded(function() {
+      $container.isotope({
+        itemSelector: '.isotope-item',
+        layoutMode: 'masonry',
+        filter: function() {
+          return qsRegex ? $(this).text().match( qsRegex ) : true;
+        }
+      })
+    });
+
+    // use value of search field to filter
+    var $quicksearch = $('#quicksearch').keyup( debounce( function() {
+      qsRegex = new RegExp( $quicksearch.val(), 'gi' );
+      $container.isotope();
+    }, 200 ) );
+
+  });
+
+  // debounce so filtering doesn't happen every millisecond
+  function debounce( fn, threshold ) {
+    var timeout;
+    return function debounced() {
+      if ( timeout ) {
+        clearTimeout( timeout );
+      }
+      function delayed() {
+        fn();
+        timeout = null;
+      }
+      timeout = setTimeout( delayed, threshold || 100 );
+    }
+  }
+</script>
+
+<!-- End responsive, Isotope-based layout example -->

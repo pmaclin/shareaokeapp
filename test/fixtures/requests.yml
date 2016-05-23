@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  available: false
+  user_id: 
+  song_id: 
+  venue_id: 
+
+two:
+  available: false
+  user_id: 
+  song_id: 
+  venue_id: 

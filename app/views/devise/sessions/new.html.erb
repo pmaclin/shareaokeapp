@@ -1,0 +1,34 @@
+<div class="container">
+
+<div class="row">
+<!-- Left Column -->
+  <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8" align="center">
+    <h2 align="center"><em>Karaoke Revisited</em></h2>
+        Karaoke + Social Networking + Your town's Got Talent = <em><u>Shareaoke</u></em><br><br>
+      <%= image_tag "london_karaoke.jpg", :height => '360px', :width => '600px', :class => 'img-circle', :alt => 'Karaoke Singers' %>
+  </div>
+    <br>
+    <br>
+
+<!-- Right Column -->
+  <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+  <h2 align="right">Log in</h2>
+    <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <div class="form-inputs">
+        <%= f.input :email, required: false, autofocus: true %>
+        <%= f.input :password, required: false %>
+        <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+      </div>
+
+      <div class="form-actions">
+        <%= f.button :submit, "Log in" %>
+      </div>
+    <% end %>
+
+    <%= render "devise/shared/links" %>
+  </div>
+
+</div>
+
+</div>
+
