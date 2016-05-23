@@ -1,5 +1,8 @@
 source 'https://rubygems.org'
 
+# explicitly sets this version of ruby to be used for this app
+ruby '2.2.4'
+
 gem 'font-awesome-sass'
 gem 'bootstrap-sass'
 gem 'simple_form'
