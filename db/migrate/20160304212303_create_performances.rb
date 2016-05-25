@@ -5,7 +5,8 @@ class CreatePerformances < ActiveRecord::Migration
       t.text :comment
       t.boolean :completed
       t.references :user, index: true, foreign_key: true
-      t.references :song, index: true, foreign_key: true
+      t.integer :song_id
+      # t.references :song, index: true, foreign_key: true
       t.references :venue, index: true, foreign_key: true
 
       t.timestamps null: false
