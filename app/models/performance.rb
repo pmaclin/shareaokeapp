@@ -6,8 +6,8 @@ class Performance < ActiveRecord::Base
   has_many :reviews
 
   validates :user, :presence => true
-  validates :song, :presence => true
-  validates :venue, :presence => true
+  validates :song, :presence => false
+  validates :venue, :presence => false
 
   # <%= @performance.reviews.count %>
   def ave_rating
