@@ -1,4 +1,4 @@
-.ssh# Comes from hartl's railstutorial.org book @ https://www.railstutorial.org/book/sign_up#sec-professional_grade_deployment
+# Comes from hartl's railstutorial.org book @ https://www.railstutorial.org/book/sign_up#sec-professional_grade_deployment
 
 workers Integer(ENV['WEB_CONCURRENCY'] || 2)
 threads_count = Integer(ENV['MAX_THREADS'] || 5)

@@ -45,6 +45,16 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Access an IRB console on exception pages or by using <%= console %> in views
 gem 'web-console', '~> 2.0', group: :development
 
+# Added per digital ocean community tutorial @ https://www.digitalocean.com/community/tutorials/deploying-a-rails-app-on-ubuntu-14-04-with-capistrano-nginx-and-puma
+# Puma has already been added to the production group below, per the Hartl tutorial
+group :development do
+    gem 'capistrano',         require: false
+    gem 'capistrano-rvm',     require: false
+    gem 'capistrano-rails',   require: false
+    gem 'capistrano-bundler', require: false
+    gem 'capistrano3-puma',   require: false
+end
+
 group :development, :test do
   # Use sqlite3 as the database for Active Record
   gem 'sqlite3', '1.3.9'
