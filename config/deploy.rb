@@ -1,5 +1,5 @@
 # Change these
-server '162.243.98.113', port: 22, roles: [:web, :app, :db], primary: true
+server '162.243.98.113', port: 80, roles: [:web, :app, :db], primary: true
 
 set :repo_url,        'git@github.com:pmaclin/shareaokeapp.git'
 set :application,     'shareaokeapp'
