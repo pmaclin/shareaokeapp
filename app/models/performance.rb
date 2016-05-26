@@ -1,9 +1,9 @@
 class Performance < ActiveRecord::Base
   belongs_to :user
-  # belongs_to :song
-  # belongs_to :venue
+  belongs_to :song
+  belongs_to :venue
 
-  # has_many :reviews
+  has_many :reviews
 
   validates :user, :presence => true
   validates :song, :presence => false
