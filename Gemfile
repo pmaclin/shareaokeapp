@@ -47,13 +47,22 @@ gem 'web-console', '~> 2.0', group: :development
 
 # Added per digital ocean community tutorial @ https://www.digitalocean.com/community/tutorials/deploying-a-rails-app-on-ubuntu-14-04-with-capistrano-nginx-and-puma
 # Puma has already been added to the production group below, per the Hartl tutorial
-group :development do
-    gem 'capistrano',         require: false
-    gem 'capistrano-rvm',     require: false
-    gem 'capistrano-rails',   require: false
-    gem 'capistrano-bundler', require: false
-    gem 'capistrano3-puma',   require: false
-end
+# group :development do
+#     gem 'capistrano',         require: false
+#     gem 'capistrano-rvm',     require: false
+#     gem 'capistrano-rails',   require: false
+#     gem 'capistrano-bundler', require: false
+#     gem 'capistrano3-puma',   require: false
+# end
+
+# Added per gorails.com tutuorial @ gorails.com/deploy/ubunt/14.04
+## Commenting out Puma since we are using Nginx and Passenger
+gem 'capistrano', '~> 3.1.0'
+gem 'capistrano-bundler', '~> 1.1.2'
+gem 'capistrano-rails', '~> 1.1.1'
+
+# Add this if you're using rbenv
+gem 'capistrano-rbenv', github: "capistrano/rbenv"
 
 group :development, :test do
   # Use sqlite3 as the database for Active Record
