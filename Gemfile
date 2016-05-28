@@ -1,7 +1,8 @@
 source 'https://rubygems.org'
 
 # explicitly sets this version of ruby to be used for this app
-ruby '2.2.4'
+# ruby '2.2.4'
+ruby '2.3.1'
 
 gem 'font-awesome-sass'
 gem 'bootstrap-sass'
