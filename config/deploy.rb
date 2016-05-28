@@ -2,13 +2,13 @@
 lock '3.1.0'
 
 set :application, 'shareaokeapp'
-set :repo_url, 'git@example.com:pmaclin/shareaokeapp.git'
+set :repo_url, 'git@github.com:pmaclin/shareaokeapp.git'
 
 # Default branch is :master
 # ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }
 
 # Default deploy_to directory is /var/www/my_app
-set :deploy_to, '/home/deploy/shaeaokeapp'
+set :deploy_to, '/home/deploy/shareaokeapp'
 
 # Default value for :scm is :git
 # set :scm, :git
@@ -44,8 +44,7 @@ namespace :deploy do
     end
   end
 
-  after :publishing, 'deploy:restart'
-  after :finishing, 'deploy:cleanup'
+  after :publishing, :restart
 
   after :restart, :clear_cache do
     on roles(:web), in: :groups, limit: 3, wait: 10 do
