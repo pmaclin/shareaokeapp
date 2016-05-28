@@ -58,7 +58,7 @@ gem 'web-console', '~> 2.0', group: :development
 
 # Added per gorails.com tutuorial @ gorails.com/deploy/ubunt/14.04
 ## Commenting out Puma since we are using Nginx and Passenger
-gem 'capistrano', '~> 3.1.0'
+gem 'capistrano', '~> 3.4.0'
 gem 'capistrano-bundler', '~> 1.1.2'
 gem 'capistrano-rails', '~> 1.1.1'
 
