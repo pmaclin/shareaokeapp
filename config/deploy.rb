@@ -2,7 +2,8 @@
 lock '3.4.1'
 
 set :application, 'shareaokeapp'
-set :repo_url, 'git@github.com:pmaclin/shareaokeapp.git'
+# set :repo_url, 'git@github.com:pmaclin/shareaokeapp.git'
+set :repo_url, 'https://github.com/pmaclin/shareaokeapp.git'
 
 # Default branch is :master
 # ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }
