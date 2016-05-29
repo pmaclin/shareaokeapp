@@ -63,9 +63,9 @@ gem 'capistrano-bundler', '~> 1.1.2'
 gem 'capistrano-rails', '~> 1.1.1'
 
 # Add this if you're using rbenv
-gem 'capistrano-rbenv', github: "capistrano/rbenv"
+# gem 'capistrano-rbenv', github: "capistrano/rbenv"
 
-gem 'capistrano-rvm'
+gem 'capistrano-rvm', github: "capistrano/rvm"
 
 group :development, :test do
   # Use sqlite3 as the database for Active Record
