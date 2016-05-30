@@ -40,9 +40,6 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use Unicorn as the app server
 # gem 'unicorn'
 
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
-
 # Access an IRB console on exception pages or by using <%= console %> in views
 gem 'web-console', '~> 2.0', group: :development
 
@@ -55,17 +52,6 @@ gem 'web-console', '~> 2.0', group: :development
 #     gem 'capistrano-bundler', require: false
 #     gem 'capistrano3-puma',   require: false
 # end
-
-# Added per gorails.com tutuorial @ gorails.com/deploy/ubunt/14.04
-## Commenting out Puma since we are using Nginx and Passenger
-gem 'capistrano', '~> 3.4.0'
-gem 'capistrano-bundler', '~> 1.1.2'
-gem 'capistrano-rails', '~> 1.1.1'
-
-# Add this if you're using rbenv
-# gem 'capistrano-rbenv', github: "capistrano/rbenv"
-
-gem 'capistrano-rvm', github: "capistrano/rvm"
 
 group :development, :test do
   # Use sqlite3 as the database for Active Record
@@ -80,5 +66,13 @@ group :production do
   gem 'pg',             '0.17.1'
   gem 'rails_12factor', '0.0.2'
   gem 'puma',           '3.1.0'
+  # Added per gorails.com tutuorial @ gorails.com/deploy/ubunt/14.04
+  ## Commenting out Puma since we are using Nginx and Passenger
+  gem 'capistrano', '~> 3.4.0'
+  gem 'capistrano-bundler', '~> 1.1.2'
+  gem 'capistrano-rails', '~> 1.1.1'
+
+  # Add this if you're using rbenv
+  gem 'capistrano-rbenv', github: "capistrano/rbenv"
 end
 
