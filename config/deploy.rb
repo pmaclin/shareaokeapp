@@ -8,7 +8,7 @@ set :repo_url, 'https://github.com/pmaclin/shareaokeapp.git'
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 
 # Default deploy_to directory is /var/www/my_app_name
-set :deploy_to, '/home/deploy/#{shareaokeapp}'
+set :deploy_to, '/home/deploy/shareaokeapp'
 
 # Default value for :scm is :git
 # set :scm, :git
