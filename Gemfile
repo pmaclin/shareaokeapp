@@ -11,7 +11,7 @@ gem 'carrierwave'
 gem 'seed_dump'
 gem 'devise'
 gem 'activeadmin', github: 'activeadmin'
-
+gem 'figaro'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
