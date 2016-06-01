@@ -1,6 +1,4 @@
 set :stage, :production
-
-# Replace 127.0.0.1 with your server's IP address!
 server '162.243.98.113', user: 'deploy', roles: %w{web app}
 
 # server-based syntax
