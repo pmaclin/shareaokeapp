@@ -28,7 +28,7 @@ require 'capistrano/deploy'
 require 'capistrano/rbenv'
 set :rbenv_type, :user
 # on remote svr: ruby 2.3.1p112 (2016-04-26 revision 54768) [x86_64-linux]
-set :rbenv_ruby, '2.3.1p112'
+set :rbenv_ruby, '2.3.1'
 
 require 'capistrano/bundler'
 require 'capistrano/rails'
