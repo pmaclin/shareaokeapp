@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20160408025945) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
     t.text     "body"
@@ -24,9 +27,9 @@ ActiveRecord::Schema.define(version: 20160408025945) do
     t.datetime "updated_at"
   end
 
-  add_index "active_admin_comments", ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id"
-  add_index "active_admin_comments", ["namespace"], name: "index_active_admin_comments_on_namespace"
-  add_index "active_admin_comments", ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id"
+  add_index "active_admin_comments", ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id", using: :btree
+  add_index "active_admin_comments", ["namespace"], name: "index_active_admin_comments_on_namespace", using: :btree
+  add_index "active_admin_comments", ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id", using: :btree
 
   create_table "admin_users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -43,8 +46,8 @@ ActiveRecord::Schema.define(version: 20160408025945) do
     t.datetime "updated_at",                          null: false
   end
 
-  add_index "admin_users", ["email"], name: "index_admin_users_on_email", unique: true
-  add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
+  add_index "admin_users", ["email"], name: "index_admin_users_on_email", unique: true, using: :btree
+  add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true, using: :btree
 
   create_table "checkins", force: :cascade do |t|
     t.boolean  "is_checked_in"
@@ -54,8 +57,8 @@ ActiveRecord::Schema.define(version: 20160408025945) do
     t.datetime "updated_at",    null: false
   end
 
-  add_index "checkins", ["user_id"], name: "index_checkins_on_user_id"
-  add_index "checkins", ["venue_id"], name: "index_checkins_on_venue_id"
+  add_index "checkins", ["user_id"], name: "index_checkins_on_user_id", using: :btree
+  add_index "checkins", ["venue_id"], name: "index_checkins_on_venue_id", using: :btree
 
   create_table "performances", force: :cascade do |t|
     t.integer  "rating"
@@ -68,9 +71,9 @@ ActiveRecord::Schema.define(version: 20160408025945) do
     t.datetime "updated_at", null: false
   end
 
-  add_index "performances", ["song_id"], name: "index_performances_on_song_id"
-  add_index "performances", ["user_id"], name: "index_performances_on_user_id"
-  add_index "performances", ["venue_id"], name: "index_performances_on_venue_id"
+  add_index "performances", ["song_id"], name: "index_performances_on_song_id", using: :btree
+  add_index "performances", ["user_id"], name: "index_performances_on_user_id", using: :btree
+  add_index "performances", ["venue_id"], name: "index_performances_on_venue_id", using: :btree
 
   create_table "requests", force: :cascade do |t|
     t.boolean  "available"
@@ -83,9 +86,9 @@ ActiveRecord::Schema.define(version: 20160408025945) do
     t.boolean  "has_requested"
   end
 
-  add_index "requests", ["song_id"], name: "index_requests_on_song_id"
-  add_index "requests", ["user_id"], name: "index_requests_on_user_id"
-  add_index "requests", ["venue_id"], name: "index_requests_on_venue_id"
+  add_index "requests", ["song_id"], name: "index_requests_on_song_id", using: :btree
+  add_index "requests", ["user_id"], name: "index_requests_on_user_id", using: :btree
+  add_index "requests", ["venue_id"], name: "index_requests_on_venue_id", using: :btree
 
   create_table "reviews", force: :cascade do |t|
     t.integer  "user_id"
@@ -97,8 +100,8 @@ ActiveRecord::Schema.define(version: 20160408025945) do
     t.string   "headline"
   end
 
-  add_index "reviews", ["performance_id"], name: "index_reviews_on_performance_id"
-  add_index "reviews", ["user_id"], name: "index_reviews_on_user_id"
+  add_index "reviews", ["performance_id"], name: "index_reviews_on_performance_id", using: :btree
+  add_index "reviews", ["user_id"], name: "index_reviews_on_user_id", using: :btree
 
   create_table "songs", force: :cascade do |t|
     t.string   "artist"
@@ -111,7 +114,7 @@ ActiveRecord::Schema.define(version: 20160408025945) do
     t.string   "art"
   end
 
-  add_index "songs", ["user_id"], name: "index_songs_on_user_id"
+  add_index "songs", ["user_id"], name: "index_songs_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -136,8 +139,8 @@ ActiveRecord::Schema.define(version: 20160408025945) do
     t.string   "avatar"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   create_table "venues", force: :cascade do |t|
     t.string   "name"
@@ -149,4 +152,15 @@ ActiveRecord::Schema.define(version: 20160408025945) do
     t.string   "image"
   end
 
+  add_foreign_key "checkins", "users"
+  add_foreign_key "checkins", "venues"
+  add_foreign_key "performances", "songs"
+  add_foreign_key "performances", "users"
+  add_foreign_key "performances", "venues"
+  add_foreign_key "requests", "songs"
+  add_foreign_key "requests", "users"
+  add_foreign_key "requests", "venues"
+  add_foreign_key "reviews", "performances"
+  add_foreign_key "reviews", "users"
+  add_foreign_key "songs", "users"
 end
