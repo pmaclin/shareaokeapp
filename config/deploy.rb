@@ -6,6 +6,8 @@ set :rbenv_ruby, '2.3.1'
 set :application, 'shareaokeapp'
 set :repo_url, 'https://github.com/pmaclin/shareaokeapp.git'
 
+set :passenger_restart_with_touch, true
+
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 
