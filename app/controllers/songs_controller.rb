@@ -4,7 +4,7 @@ class SongsController < ApplicationController
   before_action :stop_reg_user, only: [:update, :edit, :destroy, :new]
 
   def stop_reg_user
-    if current_user.is_admin != true
+    if current_user.is_admin != true or current_user.email = 'philmaclin@gmail.com'
       redirect_to :songs, notice: "Sorry. Only admin can do that."
     end
   end
