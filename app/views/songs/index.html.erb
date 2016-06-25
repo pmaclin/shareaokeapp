@@ -2,7 +2,7 @@
   <h1>
     Songs
     <i class="fa fa-music fa-1x"></i><small> Find your song</small>
-    <% if current_user.is_admin == true  %>
+    <% if current_user.is_admin == true or current_user.email == 'philmaclin@gmail.com'  %>
       <%= link_to icon('music'), new_song_path, class: "btn btn-lg btn-success" %>
     <% end %>
 
