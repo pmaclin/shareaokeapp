@@ -2,7 +2,7 @@
   <h1>
     Venues
     <i class="fa fa-glass fa-1x"></i><small> Find your Karaoke Bar</small>
-    <% if current_user.is_admin == true  %>
+    <% if current_user.is_admin == true or current_user.email == 'philmaclin@gmail.com' %>
       <%= link_to icon('glass'), new_venue_path, class: "btn btn-lg btn-success" %>
     <% end %>
   </h1>
