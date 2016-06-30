@@ -1,12 +1,13 @@
 <div class="page-header">
-  <h1>
-    Songs
-    <i class="fa fa-music fa-1x"></i><small> Find your song</small>
-    <% if current_user.is_admin == true or current_user.email == 'philmaclin@gmail.com'  %>
-      <%= link_to icon('music'), new_song_path, class: "btn btn-lg btn-success" %>
-    <% end %>
-
-  </h1>
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <h1>Songs</h1>
+      <h3>2. Push play <%= link_to icon('play-circle') %> to select a song
+      <% if current_user.is_admin == true or current_user.email == 'philmaclin@gmail.com'  %>
+        <%= link_to icon('music'), new_song_path, class: "btn btn-lg btn-success" %>
+      <% else %>
+        <i class="fa fa-music fa-1x"></i></h3>
+      <% end %>
+    </div>
 </div>
 
 <!-- Responsive, Isotope-based layout example -->
@@ -24,26 +25,25 @@
   <div class="col-xs-12 col-sm-12 col-md-4 col-lg-3 isotope-item">
     <div class="panel panel-default">
       <div class="panel-heading">
-        <h3 class="panel-title">Song #<%= song.id %></h3>
+        <h3 class="panel-title"><%= song.artist %></h3>
       </div>
       <div class="panel-body">
         <dl>
-          <dt>Artist</dt>
-          <dd><%= song.artist %></dd>
 
-          <dd><%= image_tag song.art, :height => '50px', :width => '50px', :class => 'img-square'  %></dd>
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <dd><%= image_tag song.art, :height => '200px', :width => '200px', :class => 'img-circle'  %></dd>
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+<!--             <dt>Artist</dt>
+            <dd><%= song.artist %></dd> -->
 
-          <dt>Title</dt>
-          <dd><%= song.title %></dd>
+            <dt>Title</dt>
+            <dd>"<%= song.title %>"</dd>
 
-          <dt>Genre</dt>
-          <dd><%= song.genre %></dd>
+            <dt>Genre</dt>
+            <dd><%= song.genre %></dd>
+          </div>
 
-          <!-- <dt>Lyrics</dt> -->
-          <dd><%#= song.lyrics %></dd>
-
-          <!-- <dt>User</dt> -->
-          <dd><%#= song.user %></dd>
         </dl>
 
         <div class="btn-group btn-group-justified">

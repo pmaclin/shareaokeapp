@@ -1,11 +1,13 @@
 <div class="page-header">
-  <h1>
-    Venues
-    <i class="fa fa-glass fa-1x"></i><small> Find your Karaoke Bar</small>
-    <% if current_user.is_admin == true or current_user.email == 'philmaclin@gmail.com' %>
-      <%= link_to icon('glass'), new_venue_path, class: "btn btn-lg btn-success" %>
-    <% end %>
-  </h1>
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <h1>Shareaoke Bars</h1>
+      <h3>1. Find your Karaoke Bar & Check In
+      <% if current_user.is_admin == true or current_user.email == 'philmaclin@gmail.com' %>
+        <%= link_to icon('glass'), new_venue_path, class: "btn btn-lg btn-success" %>
+      <% else %>
+        <i class="fa fa-glass fa-1x"></i></h3>
+      <% end %>
+    </div>
 </div>
 
 <!-- Responsive, Isotope-based layout example -->
@@ -27,16 +29,19 @@
       </div>
       <div class="panel-body">
         <dl>
-          <!-- <dt>Name</dt>
-          <dd><%= venue.name %></dd> -->
 
-          <dd><%= image_tag venue.image, :height => '50px', :width => '50px', :class => 'img-square'  %></dd>
+          <!-- <div class="container"> -->
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+              <dd align="center"><%= image_tag venue.image, :height => '200px', :width => '200px', :class => 'img-square'  %></dd>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+              <dt>Address</dt>
+              <dd><%= venue.address %></dd>
 
-          <dt>Address</dt>
-          <dd><%= venue.address %></dd>
-
-          <dt>City</dt>
-          <dd><%= venue.city %></dd>
+              <dt>City</dt>
+              <dd><%= venue.city %></dd>
+            </div>
+          <!-- </div> -->
 
         </dl>
         <div class="btn-group btn-group-justified">

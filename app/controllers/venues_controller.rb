@@ -50,7 +50,7 @@ class VenuesController < ApplicationController
   def update
     respond_to do |format|
       if @venue.update(venue_params)
-        format.html { redirect_to @venue, notice: 'Venue was successfully updated.' }
+        format.html { redirect_to :venues, notice: 'Venue was successfully updated.' }
         format.json { render :show, status: :ok, location: @venue }
       else
         format.html { render :edit }
