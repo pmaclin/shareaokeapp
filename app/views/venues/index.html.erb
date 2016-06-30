@@ -42,7 +42,9 @@
         <div class="btn-group btn-group-justified">
           <%= link_to icon('check'), venue, class: "btn btn-default" %>
 
-          <%#= link_to icon('edit'), edit_venue_url(venue), class: "btn btn-warning" %>
+          <% if current_user.is_admin == true or current_user.email == 'philmaclin@gmail.com' %>
+            <%= link_to icon('edit'), edit_venue_url(venue), class: "btn btn-warning" %>
+          <% end %>
 
           <%#= link_to icon('trash-o'), venue, method: :delete, data: { confirm: "Do you really want to delete this venue?" }, class: "btn btn-danger" %>
         </div>
