@@ -1,7 +1,7 @@
 class RequestsController < InheritedResources::Base
   before_action :set_request, only: [:show, :edit, :update, :destroy ]
 
-  # before_action :stop_reg_user, only: [:show, :index ]
+  before_action :stop_reg_user, only: [:show, :index ]
 
   def stop_reg_user
     if current_user.is_dj != true

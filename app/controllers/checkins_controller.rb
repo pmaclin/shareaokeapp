@@ -1,7 +1,7 @@
 class CheckinsController < InheritedResources::Base
   before_action :set_checkin, only: [:show, :edit, :update, :destroy ]
 
-  # before_action :stop_reg_user, only: [:show, :index, :edit, :update]
+  before_action :stop_reg_user, only: [:show, :index, :edit, :update]
 
   def stop_reg_user
     if current_user.is_dj != true
