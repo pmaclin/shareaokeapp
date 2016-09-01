@@ -7,7 +7,7 @@ class CheckinsController < InheritedResources::Base
     if current_user.is_dj != true
       redirect_to :checkins, notice: "Sorry. Only the DJ has access to that!"
     end
-  end
+  end 
 
   def index
     if current_user.present?
@@ -32,13 +32,28 @@ class CheckinsController < InheritedResources::Base
   end
 
   def check_out
-    @checkin = Checkin.find_by(params[:id])
-    @checkin.user = current_user
-    @checkin.is_checked_in = false
-    current_user.is_checked_in = false
-    current_user.save
-    @checkin.save
-    redirect_to :back, notice: "You've just checked out. Real nice champ!"
+    @checkin = Checkin.where(venue_id:params[:id],is_checked_in:true).first
+    notice_message = ""
+    if @checkin.present?
+      @checkin.user = current_user
+      @checkin.is_checked_in = false
+      current_user.is_checked_in = false
+      current_user.save
+      @checkin.save
+      notice_message =  "You've just checked out. Real nice champ!"
+    else
+      ### get my previous checkins for venue and make it checkout
+      prev_checkin = current_user.previous_checkins.first
+      if prev_checkin.present?
+        bar_name = prev_checkin.venue.name unless prev_checkin.nil?
+        prev_checkin.update(is_checked_in:false)
+        ## make current venue as user checkin
+        current_venue = Venue.find(params[:id])
+        Checkin.create(user_id:current_user.id,venue_id:current_venue.id,is_checked_in:true)
+        notice_message = "You've just checked out from #{bar_name} and checkin into #{current_venue.name} "
+      end
+    end
+    redirect_to :back, notice: notice_message
   end
 
   def update
