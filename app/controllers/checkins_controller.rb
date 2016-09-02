@@ -7,7 +7,7 @@ class CheckinsController < InheritedResources::Base
     if current_user.is_dj != true
       redirect_to :checkins, notice: "Sorry. Only the DJ has access to that!"
     end
-  end
+  end 
 
   def index
     if current_user.present?

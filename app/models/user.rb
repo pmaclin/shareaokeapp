@@ -18,6 +18,9 @@ def checkin
   checkins.last
 end
 
+def previous_checkins
+  self.checkins.where(is_checked_in:true).last
+end
 def request
   @requests = Request.find_by(:available => false)
 end
