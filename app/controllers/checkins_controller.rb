@@ -43,7 +43,7 @@ class CheckinsController < InheritedResources::Base
       notice_message =  "You've just checked out. Real nice champ!"
     else
       ### get my previous checkins for venue and make it checkout
-      prev_checkin = current_user.previous_checkins.first
+      prev_checkin = current_user.previous_checkins
       if prev_checkin.present?
         bar_name = prev_checkin.venue.name unless prev_checkin.nil?
         prev_checkin.update(is_checked_in:false)
@@ -67,8 +67,6 @@ class CheckinsController < InheritedResources::Base
       end
     end
   end
-
-
 
   private
     # Use callbacks to share common setup or constraints between actions.
