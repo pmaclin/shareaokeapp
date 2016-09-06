@@ -5,9 +5,6 @@ set :rbenv_ruby, '2.3.1'
 
 set :application, 'shareaokeapp'
 set :repo_url, 'https://github.com/pmaclin/shareaokeapp.git'
-# Grabbing from Lalit's Repo!!
-# set :repo_url, 'https://github.com/lsethi123/shareaokeapp.git'
-
 
 set :passenger_restart_with_touch, true
 
