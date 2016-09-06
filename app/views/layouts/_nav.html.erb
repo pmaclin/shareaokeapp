@@ -1,0 +1,35 @@
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <%= link_to "Shareaoke_BETA", root_url, :class => "navbar-brand" %>
+    </div>
+
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
+      <ul class="nav navbar-nav">
+        <li><%= link_to "Find A Karaoke Bar", venues_path %></li>
+        <li><%= link_to "Search Songs", songs_path %></li>
+        <li><%= link_to "Performance Queue", performances_path %></li>
+        <li><%= link_to "Reviews", reviews_path %></li>
+        <% if current_user.present? %>
+        <% if current_user.is_dj == true %>
+        <li><%= link_to "Checkins/Outs", checkins_path %></li>
+        <li><%= link_to "Requests", requests_path %></li>
+        <% end %>
+        <% end %>
+
+        <% if user_signed_in? %>
+        <li><%= link_to current_user.stagename, edit_user_registration_path %></li>
+        <li><%= link_to "Sign Out", destroy_user_session_path, :method => "delete" %></li>
+        <% else %>
+        <li><%= link_to "Sign Up", new_user_registration_path %></li>
+        <li><%= link_to "Log In", new_user_session_path %></li>
+        <% end %>
+      </div>
+    </div>
+  </nav>

@@ -42,10 +42,7 @@
         <%= f.button :submit, "Update" %>
       </div>
     <% end %>
-<p>
-<br class="visible-xs">
-"You know what this is beeeotch!!"
-</p>
+<br>
   <div class="col-xs-12 col-sm-6 col-md-12 col-lg-12" align="center">
     <% @total_checkins = Checkin.where({ :user_id => current_user.id}).count %>
       <% if @total_checkins == 0 %>
@@ -79,8 +76,6 @@
       <p align="center">You're checked in @ <p align="center"><strong><a href="/venues/<%= @ci.last.venue.try(:id) %>"><%= @ci.last.venue.try(:name) %></a></strong></p>
       <p align="center"><%= image_tag @ci.last.venue.try(:image), height: '100px', width: '100px', :class => 'img-circle' %></p>
       <p align="center"><a href="/venues/<%= @ci.last.venue.try(:id) %>">CHECKOUT</a> of <a href="/venues/<%= @ci.last.venue.try(:id) %>"><%= @ci.last.venue.try(:name) %></a> before checking in to <a href="/venues" %>another bar.</a></p>
-      <hr>
-       <p><%#= link_to icon('check'),"/checkins/#{params[:id]}/check_out", method:"post", class: "btn btn-lg btn-danger" %></p>
     <% end %>
     <% else %>
       <p align="left"><h6>You are not currently checked in to a bar. Do you want to check in to one of your previous spots below?</h6></p>

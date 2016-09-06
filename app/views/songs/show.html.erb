@@ -32,7 +32,7 @@
             <% if @hr.present? %>
             <%#= redirect_to :root, notice: "Hey...slow your roll Superstar! You can only make one request at-a-time between performances." %>
 
-            <h1 align="center">"Doh!"</h1>
+            <h1 align="center">"Ooops!"</h1>
             <p><%= current_user.stagename %>, looks like you currently have a song in the request queue. You have to wait for the dj to clear it from the queue <em>before<em> you can request another.</p>
               <p><%= link_to icon('thumbs-down'), '/', class: "btn btn-danger" %></p>
 
