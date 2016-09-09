@@ -1,5 +1,5 @@
 <!-- Landing page for registered users -->
-<h2 align="left">Sup, <%= current_user.stagename %>?</h2>
+<h2 align="left"><%= current_user.stagename %>!</h2>
 
 <div class="container">
   <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
@@ -18,13 +18,13 @@
             <%= image_tag @user.avatar, :height => '150px', :width => '150px', :class => 'img-square' %>
           </div>
           <div class="col-sm-6 col-md-6 col-lg-8">
-          <h6 align="left">New to Shareaoke?</h6>
+          <h6 align="left">How to Shareaoke:</h6>
             <ol>
-              <li>Select <strong>'Find A Karaoke Bar'</strong> to check in (It should be the one you're in right now.)</li>
-              <li>Once checked in 'Search Songs' and confirm your request.</li>
-              <li>That's it! Now just sit back and relax.</li>
+              <li>Select: 'Find A Karaoke Bar'</li>
+              <li>'Search Songs' to request a track.</li>
+              <li>Sit back and warm up your pipes!</li>
             </ol>
-            <p>The DJ has received your request and will move you to the 'Performance Queue' when it's your turn to perform. At that point you're avatar will show on the 'Performance Queue' page. When you're done you can any ratings others have left on your performance!</p>
+            <!-- <p>The DJ has received your request and will move you to the 'Performance Queue' when it's your turn to perform. At that point you're avatar will show on the 'Performance Queue' page. When you're done you can any ratings others have left on your performance!</p> -->
           </div>
         </div>
         <div class="row">
@@ -35,7 +35,7 @@
         <%= f.input :avatar, required: false, hint: "Select an image to upload" %>
         <%= f.hidden_field :avatar_cache %>
         <%#= f.input :password_confirmation, required: false %>
-        <%= f.input :current_password, hint: "We need your current password to confirm any changes you've made", required: true %>
+        <%= f.input :current_password, hint: "Enter your current password to confirm any changes.", required: true %>
 
       </div>
       <div class="form-actions">
@@ -43,24 +43,24 @@
       </div>
     <% end %>
 <br>
-  <div class="col-xs-12 col-sm-6 col-md-12 col-lg-12" align="center">
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" align="center">
     <% @total_checkins = Checkin.where({ :user_id => current_user.id}).count %>
       <% if @total_checkins == 0 %>
           <h4><em>"We don't need no stinkin' badges!"</em></h4>
       <% elsif @total_checkins > 0 and @total_checkins <= 4 %>
-          <h4><em>Congratulations, <%= current_user.stagename %>! You've earned stars!</em></h4>
-          <p><font color="yellow"><i class="fa fa-star fa-1x"></i></font>  Earned for you're first Check In!</p>
+          <h4><em>Congratulations, <%#= current_user.stagename %>You've earned stars!</em></h4>
+          <p><font color="yellow"><i class="fa fa-star fa-1x"></i></font>  Earned for you're first Check In</p>
       <% elsif @total_checkins >= 5 and @total_checkins <= 9 %>
-          <h4><em><%= current_user.stagename %>! You've earned MORE stars!</em></h4>
+          <h4><em><%#= current_user.stagename %>You've earned MORE stars!</em></h4>
           <p><font color="yellow"><i class="fa fa-star fa-1x"></i></font><font color="purple"><i class="fa fa-star fa-2x"></i></font>  Earned for your 5th Check In!</p>
       <% elsif @total_checkins >= 10 and @total_checkins <= 14 %>
-          <h4><em>Hey! You like this karaoke stuff, huh?!</em></h4>
+          <h4><em>Hey, You like this sharaoke stuff, huh?!</em></h4>
           <p><font color="yellow"><i class="fa fa-star fa-1x"></i></font><font color="purple"><i class="fa fa-star fa-2x"></i></font><font color="blue"><i class="fa fa-star fa-3x"></i></font>  Earned for your 10th Check In!. Impressive!</p>
       <% elsif @total_checkins >= 15 and @total_checkins <= 19 %>
-          <h4><em>Yo, <%= current_user.stagename %>! You are Killin' it, Superstar!</em></h4>
+          <h4><em>Yo, <%#= current_user.stagename %>, you're killin' it Superstar!</em></h4>
           <p><font color="yellow"><i class="fa fa-star fa-1x"></i></font><font color="purple"><i class="fa fa-star fa-2x"></i></font><font color="blue"><i class="fa fa-star fa-3x"></i></font><font color="green"><i class="fa fa-star fa-4x"></i></font>  Earned for you 15th Check In!</p>
       <% elsif @total_checkins >= 20 and @total_checkins <= 99 %>
-          <h4><em>Okay...lookout. I'm blinded by your starlight!</em></h4>
+          <h4><em>Lookout. I'm blinded by your starlight!</em></h4>
           <p><font color="yellow"><i class="fa fa-star fa-1x"></i></font><font color="purple"><i class="fa fa-star fa-2x"></i></font><font color="blue"><i class="fa fa-star fa-3x"></i></font><font color="green"><i class="fa fa-star fa-4x"></i></font><font color="red"><i class="fa fa-star fa-5x"></i></font>  Earned for 20 or more Check Ins. U-R-A Beast!</p>
       <% elsif @total_checkins >= 20 and @total_checkins <= 99 %>
           <h4><em>Hey, Ummm....<%= current_user.stagename %>, listen... This is kinda difficult for us but we were thinkin... There are support groups for things like this! Or, maybe you're a dj? </em></h4>
@@ -68,7 +68,7 @@
   </div>
 </div>
 
-  <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6" >
+  <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" >
     <ol>
   <% if current_user.is_checked_in == true %>
     <% @ci = Checkin.where({ :user_id => current_user.id}) %>
@@ -80,7 +80,7 @@
     <% else %>
       <p align="left"><h6>You are not currently checked in to a bar. Do you want to check in to one of your previous spots below?</h6></p>
   <% end %>
-      <p>Your Favorite Spots:  <span class="badge"><%= current_user.checkins.count %></span></p>
+      <p>Favorite Spots:  <span class="badge"><%= current_user.checkins.count %></span></p>
         <% @current_user.checkins.select(:venue_id).distinct.each do |checkin| %>
           <li class="list-group-item">
             <a href="/venues/<%= checkin.venue_id %>"><%= checkin.venue.name %></a> <%#= checkin.created_at.strftime("checked in on %B %d at %I: %M %p") %>(<%= Checkin.where({ :venue_id => checkin.venue_id, :user_id => current_user.id}).count %>x)
@@ -90,7 +90,7 @@
     <br>
 
     <ol>
-      <p>Your Requests:  <span class="badge">  <%= current_user.requests.count %></span></p>
+      <p>Requests:  <span class="badge">  <%= current_user.requests.count %></span></p>
         <% @current_user.requests.select(:song_id).distinct.each do |request| %>
           <li class="list-group-item">
             "<a href="/songs/<%= request.song_id %>"><%= request.song.title %></a>" by <%= request.song.artist %>
@@ -99,7 +99,7 @@
     </ol>
     <br> <!--  -->
     <ol>
-      <p>Your Performances:  <span class="badge">  <%= current_user.performances.count %></span></p>
+      <p>Performances:  <span class="badge">  <%= current_user.performances.count %></span></p>
         <% @current_user.performances.each do |performance| %>
           <li class="list-group-item">
             "<a href="/songs/<%= performance.song.id %>"><%= performance.song.title %></a>" by <%= performance.song.artist %> at <a href="/venues/<%= performance.venue_id %>"><%= performance.venue.name %></a>

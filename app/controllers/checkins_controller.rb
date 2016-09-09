@@ -7,7 +7,7 @@ class CheckinsController < InheritedResources::Base
     if current_user.is_dj != true
       redirect_to :checkins, notice: "Sorry. Only the DJ has access to that!"
     end
-  end 
+  end
 
   def index
     if current_user.present?
@@ -50,7 +50,7 @@ class CheckinsController < InheritedResources::Base
         ## make current venue as user checkin
         current_venue = Venue.find(params[:id])
         Checkin.create(user_id:current_user.id,venue_id:current_venue.id,is_checked_in:true)
-        notice_message = "You've just checked out from #{bar_name} and checkin into #{current_venue.name} "
+        notice_message = "You've just checked out of #{bar_name} and checked in @ #{current_venue.name} "
       end
     end
     redirect_to :back, notice: notice_message
