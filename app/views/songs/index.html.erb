@@ -1,11 +1,11 @@
 <div class="page-header">
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-      <h1>Songs</h1>
-      <h3>2. Push play <%= link_to icon('play-circle') %> to select a song
+      <h3>Song Library</h3>
+      <p>Push the play button <%= link_to icon('play-circle') %> to select a track.
       <% if current_user.is_admin == true or current_user.email == 'philmaclin@gmail.com'  %>
         <%= link_to icon('music'), new_song_path, class: "btn btn-lg btn-success" %>
       <% else %>
-        <i class="fa fa-music fa-1x"></i></h3>
+        <i class="fa fa-music fa-1x"></i></p>
       <% end %>
     </div>
 </div>
@@ -14,7 +14,7 @@
 
 <div class="row">
   <div class="col-xs-12">
-    <input type="text" id="quicksearch" placeholder="Search Songs (start typing)" class="form-control">
+    <input type="text" id="quicksearch" placeholder="Start typing to find your track" class="form-control">
   </div>
 </div>
 
@@ -34,14 +34,15 @@
             <dd><%= image_tag song.art, :height => '200px', :width => '200px', :class => 'img-circle'  %></dd>
           </div>
           <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          </p>
 <!--             <dt>Artist</dt>
             <dd><%= song.artist %></dd> -->
 
-            <dt>Title</dt>
-            <dd>"<%= song.title %>"</dd>
+            <!-- <dt>Title:</dt> -->
+            <!-- <dd> --><p><i class="fa fa-music fa-1x"></i> "<%= song.title %>" | <%= song.genre %></p><!-- </dd> -->
 
-            <dt>Genre</dt>
-            <dd><%= song.genre %></dd>
+            <!-- <dt>Genre</dt> -->
+    <!--         <dd><%= song.genre %></dd> -->
           </div>
 
         </dl>
