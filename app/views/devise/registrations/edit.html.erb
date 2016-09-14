@@ -2,10 +2,10 @@
 <h2 align="left"><%= current_user.stagename %>!</h2>
 
 <div class="container">
-  <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+  <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
     <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
       <%= f.error_notification %>
-
+      <!-- Begin Form Inputs -->
       <div class="form-inputs">
         <%= f.input :email, required: true, autofocus: true %>
           <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
@@ -24,7 +24,6 @@
               <li>'Search Songs' to request a track.</li>
               <li>Sit back and warm up your pipes!</li>
             </ol>
-            <!-- <p>The DJ has received your request and will move you to the 'Performance Queue' when it's your turn to perform. At that point you're avatar will show on the 'Performance Queue' page. When you're done you can any ratings others have left on your performance!</p> -->
           </div>
         </div>
         <div class="row">
@@ -36,21 +35,22 @@
         <%= f.hidden_field :avatar_cache %>
         <%#= f.input :password_confirmation, required: false %>
         <%= f.input :current_password, hint: "Enter your current password to confirm any changes.", required: true %>
-
       </div>
+      <!-- End Form Inputs -->
+
       <div class="form-actions">
         <%= f.button :submit, "Update" %>
       </div>
     <% end %>
-  <!-- </div> -->
+  </div> <!-- End Column -->
 <br>
 <!-- <div class="container"> -->
-  <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" align="center" >
+  <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" align="left" >
     <% @total_checkins = Checkin.where({ :user_id => current_user.id}).count %>
       <% if @total_checkins == 0 %>
           <h4><em>"We don't need no stinkin' badges!"</em></h4>
       <% elsif @total_checkins > 0 and @total_checkins <= 4 %>
-          <h4><em>Congratulations, <%#= current_user.stagename %>You've earned stars!</em></h4>
+          <h4><em>Congratulations! <%#= current_user.stagename %>You've Earned Stars!</em></h4>
           <p><font color="yellow"><i class="fa fa-star fa-1x"></i></font>  Earned for you're first Check In</p>
       <% elsif @total_checkins >= 5 and @total_checkins <= 9 %>
           <h4><em><%#= current_user.stagename %>You've earned MORE stars!</em></h4>
@@ -67,10 +67,10 @@
       <% elsif @total_checkins >= 20 and @total_checkins <= 99 %>
           <h4><em>Hey, Ummm....<%= current_user.stagename %>, listen... This is kinda difficult for us but we were thinkin... There are support groups for things like this! Or, maybe you're a dj? </em></h4>
       <% end %>
-  </div>
+  </div>  <!-- End Column -->
 
-  <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" align="center" >
-  <ol align="left">
+  <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" align="left" >
+  <!-- <ol> -->
       <% if current_user.is_checked_in == true %>
         <% @ci = Checkin.where({ :user_id => current_user.id}) %>
         <% if @ci.present? %>
@@ -79,7 +79,7 @@
           <p><a href="/venues/<%= @ci.last.venue.try(:id) %>">Check out</a> of <a href="/venues/<%= @ci.last.venue.try(:id) %>"><%= @ci.last.venue.try(:name) %></a> before checking in to <a href="/venues" %>another bar.</a></p>
         <% end %>
         <% else %>
-          <p align="left"><h6>You are not currently checked in to a bar. Do you want to check in to one of your previous spots below?</h6></p>
+          <p align="left"><h6>You're not currently checked in to a bar. Check in to one of your favorite spots below:</h6></p>
       <% end %>
           <p align="left">Favorite Spots:  <span class="badge"><%= current_user.checkins.count %></span></p>
             <% @current_user.checkins.select(:venue_id).distinct.each do |checkin| %>
@@ -87,26 +87,26 @@
                 <a href="/venues/<%= checkin.venue_id %>"><%= checkin.venue.name %></a> <%#= checkin.created_at.strftime("checked in on %B %d at %I: %M %p") %>(<%= Checkin.where({ :venue_id => checkin.venue_id, :user_id => current_user.id}).count %>x)
               </li>
             <% end %>
-  </ol>
+  <!-- </ol> -->
 <br>
-    <ol>
+    <!-- <ol> -->
       <p align="left">Requests:  <span class="badge">  <%= current_user.requests.count %></span></p>
         <% @current_user.requests.select(:song_id).distinct.each do |request| %>
           <li class="list-group-item">
             "<a href="/songs/<%= request.song_id %>"><%= request.song.title %></a>" by <%= request.song.artist %>
           </li>
         <% end %>
-    </ol>
+    <!-- </ol> -->
     <br> <!--  -->
-    <ol>
+    <!-- <ol> -->
       <p align="left">Performances:  <span class="badge">  <%= current_user.performances.count %></span></p>
         <% @current_user.performances.each do |performance| %>
           <li class="list-group-item">
             "<a href="/songs/<%= performance.song.id %>"><%= performance.song.title %></a>" by <%= performance.song.artist %> at <a href="/venues/<%= performance.venue_id %>"><%= performance.venue.name %></a>
           </li>
         <% end %>
-    </ol>
-</div>
+    <!-- </ol> -->
+  </div> <!-- End Column -->
 
 </div> <!-- End container -->
 

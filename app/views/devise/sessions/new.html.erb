@@ -3,8 +3,9 @@
 <div class="row">
 <!-- Left Column -->
   <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8" align="center">
-    <h2 align="center"><em>Karaoke Revisited</em></h2>
-        Karaoke + Social Networking + Your town's Got Talent = <em><u>Shareaoke</u></em><br><br>
+    <h2 align="center">Karaoke <em>3.0</em></h2>
+
+        <br><br>
       <%= image_tag "london_karaoke.jpg", :height => '50%', :width => '85%', :class => 'img-circle', :alt => 'Karaoke Singers' %>
   </div>
     <br>
@@ -12,7 +13,7 @@
 
 <!-- Right Column -->
   <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-  <h2 align="right">Log in</h2>
+  <h4 align="left">Log in</h4>
     <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
       <div class="form-inputs">
         <%= f.input :email, required: false, autofocus: true %>

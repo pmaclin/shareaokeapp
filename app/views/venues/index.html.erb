@@ -1,6 +1,6 @@
 <div class="page-header">
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-      <h3>Check In</h3>
+      <h3>Bar Check In</h3>
       <p>Locate your karaoke bar. Click to check in.
       <% if current_user.is_admin == true or current_user.email == 'philmaclin@gmail.com' %>
         <%= link_to icon('glass'), new_venue_path, class: "btn btn-lg btn-success" %>
