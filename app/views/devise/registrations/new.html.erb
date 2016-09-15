@@ -1,6 +1,7 @@
+
 <!-- <div class="jumbotron">
   <div class="container">
-    <%#= image_tag "Karaoke_Guy.png", :height => '510px', :width => '1213px', :class => 'img-square', :alt => 'Dude Doing Shareaoke' %>
+    <%#= image_tag "Karaoke_Guy.png", :height => '510px', :width => '2513px', :class => 'img-square', :alt => 'Dude Doing Shareaoke' %>
     <h1>Hello, world!</h1>
       <p>...</p>
       <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p>
@@ -8,6 +9,56 @@
 </div> -->
 
 <!-- THE SIGN UP PAGE -->
+<style>
+/* body {
+    background-image: url("#");
+    background-color: #e1e1ea;
+  }*/
+
+/* Social Section */
+#social-section {
+  background-color: #0dbf9b;
+  padding: 5px 5px 0px 5px;
+  margin: 0px;
+  text-align: center;
+}
+#social-section .social ul li {
+  display: inline-block;
+  margin: 5px 5px 5px 5px;
+  text-align: center;
+}
+#social-section .social i.fa {
+  font-size: 20px;
+  padding: 5px;
+  color: #fff;
+ /* transition: all 0.5s;*/
+}
+#social-section .social i.fa:hover {
+  color: #666;
+}
+
+/* Footer */
+#footer {
+  background-color: #000000;
+  color: #777;
+  padding: 5px 5px 0px 5;
+  margin: 0px;
+  /*position: fixed;*/
+  /*width: 100%;*/
+  text-align: center;
+}
+#footer p {
+  font-size: 13px;
+  margin-top: 10px;
+  padding: 5px 5px 5px 15px;
+}
+#footer a {
+  color: #999;
+}
+
+
+
+</style>
 
 <div class="container">
 
@@ -45,63 +96,101 @@
 
 <!-- Row #2 -->
   <div class="row">
-    <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8" align="left">
-     <h4 align="left"><em>How Shareaoke Works</em></h4>
-      <div class="media" align="left">
-        <div class="media-left">
-          <a href="#">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-md-offset-1 col-lg-12 col-lg-offset-1" align="left">
+       <h4 align="left"><em>How Shareaoke Works:</em></h4>
+        <div class="media" align="left">
+          <div class="media-left">
+            <a href="#">
 
-            <%= image_tag "Pencil.png", :height => '35px', :width => '35px', :class => 'img-square', :alt => 'Happy White People' %>
-          </a>
+              <%= image_tag "Pencil.png", :height => '35px', :width => '35px', :class => 'img-square', :alt => 'Happy White People' %>
+            </a>
+          </div>
+          <div class="media-left">
+            <h5 class="media-heading">Sign Up</h5>
+            Takes less than 20 seconds &amp; there's nothing to download. All you need is a browser &amp; an email address. Customize your profile &amp; you're in business.
+          </div>
         </div>
-        <div class="media-left">
-          <h5 class="media-heading">Sign Up</h5>
-          Takes less than 20 seconds &amp; there's nothing to download. All you need is a browser and an email address. Customize your profile and you're in business.
+    <hr>
+        <div class="media" align="left">
+          <div class="media-left">
+            <a href="#">
+              <%= image_tag "Search.png", :height => '35px', :width => '35px', :class => 'img-square', :alt => 'Happy White People' %>
+            </a>
+          </div>
+          <div class="media-left">
+            <h5 class="media-heading">Check In</h5>
+            Find your bar &amp; check into it. See who else has checked in &amp; where you are in the request queue.
+          </div>
         </div>
+    <hr>
+        <div class="media" align="left">
+          <div class="media-left">
+            <a href="#">
+              <%= image_tag "Music.png", :height => '35px', :width => '35px', :class => 'img-square', :alt => 'Happy White People' %>
+            </a>
+          </div>
+          <div class="media-left">
+            <h5 class="media-heading">Request your song</h5>
+            Search the playlist to find the track you want to sing. Select it &amp; confirm the request. The DJ will get your request &amp; you'll be put in queue. That's it! Warm up your pipes &amp; wait for the DJ to call your stagename.
+          </div>
+        </div>
+    <hr>
+        <div class="media" align="left">
+          <div class="media-left">
+            <a href="#">
+              <%= image_tag "Mic.png", :height => '35px', :width => '35px', :class => 'img-square', :alt => 'Happy White People' %>
+            </a>
+          </div>
+          <div class="media-left">
+            <h5 class="media-heading">Perform</h5>
+            Shed the nerves &amp; do what you came to do!  When you're done performing the DJ will move you out of that queue &amp; others can rate the performance.
+          </div>
+        </div>
+    <hr>
+        <div class="media" align="left">
+          <div class="media-left">
+            <a href="#">
+              <%= image_tag "Repeat.png", :height => '35px', :width => '35px', :class => 'img-square', :alt => 'Happy White People' %>
+            </a>
+          </div>
+          <div class="media-left">
+            <h5 class="media-heading">Repeat</h5>
+            'Nuff said, Superstar! It's your world now. We're all just livin' in it. Perform again, &amp; again. Become the ruler of your favorite karaoke spot. Compete for leaderboard bragging rights.
+          </div>
+        </div>
+    <hr>
+    </div> <!-- End Column -->
+  </div> <!-- End Div Row -->
+</div> <!-- End Container -->
+
+
+<!-- SOCIAL SECTION -->
+<div id="social-section">
+  <div class="container">
+    <div class="social">
+      <ul>
+        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+        <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+        <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER SECTION -->
+<div id="footer">
+  <div class="container">
+    <div class="overlay">
+      <div class="row" >
+      <p>&copy; 2016 Shareaoke.com</p>
+<!--       <ul>
+        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+        <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+        <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+      </ul> -->
       </div>
-      <div class="media" align="left">
-        <div class="media-left">
-          <a href="#">
-            <%= image_tag "Search.png", :height => '35px', :width => '35px', :class => 'img-square', :alt => 'Happy White People' %>
-          </a>
-        </div>
-        <div class="media-left">
-          <h5 class="media-heading">Check In</h5>
-          Find your bar and check into it. See who else has checked in where you are in the request queue.
-        </div>
-      </div>
-      <div class="media" align="left">
-        <div class="media-left">
-          <a href="#">
-            <%= image_tag "Music.png", :height => '35px', :width => '35px', :class => 'img-square', :alt => 'Happy White People' %>
-          </a>
-        </div>
-        <div class="media-left">
-          <h5 class="media-heading">Request your song</h5>
-          Search the playlist to find the track you want to sing. Select it and confirm the request. The DJ will get your request and you'll be put in queue. That's it! Warm up your pipes and wait for the DJ to call your stagename.
-        </div>
-      </div>
-      <div class="media" align="left">
-        <div class="media-left">
-          <a href="#">
-            <%= image_tag "Mic.png", :height => '35px', :width => '35px', :class => 'img-square', :alt => 'Happy White People' %>
-          </a>
-        </div>
-        <div class="media-left">
-          <h5 class="media-heading">Perform</h5>
-          Shed the nerves and do what you came to do!  When you're done performing the DJ will move you out of that queue and others can rate the performance.
-        </div>
-      </div>
-      <div class="media" align="left">
-        <div class="media-left">
-          <a href="#">
-            <%= image_tag "Repeat.png", :height => '35px', :width => '35px', :class => 'img-square', :alt => 'Happy White People' %>
-          </a>
-        </div>
-        <div class="media-left">
-          <h5 class="media-heading">Repeat</h5>
-          'Nuff said, Superstar! It's your world now. We're all just livin' in it. Perform again, and again. Become the ruler of your favorite karaoke spot. Compete for leaderboard bragging rights.
-        </div>
-      </div>
+    </div>
   </div>
 </div>

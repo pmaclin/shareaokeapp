@@ -20,8 +20,8 @@
           <div class="col-sm-6 col-md-6 col-lg-8">
           <h6 align="left">How to Shareaoke:</h6>
             <ol>
-              <li>Select: 'Find A Karaoke Bar'</li>
-              <li>'Search Songs' to request a track.</li>
+              <li>Click:<a href="/venues"> 'Find A Karaoke Bar'</a></li>
+              <li>Search <a href="/songs">'Songs'</a> to request a track</li>
               <li>Sit back and warm up your pipes!</li>
             </ol>
           </div>
@@ -42,30 +42,31 @@
         <%= f.button :submit, "Update" %>
       </div>
     <% end %>
+<br>
   </div> <!-- End Column -->
 <br>
 <!-- <div class="container"> -->
   <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" align="left" >
     <% @total_checkins = Checkin.where({ :user_id => current_user.id}).count %>
       <% if @total_checkins == 0 %>
-          <h4><em>"We don't need no stinkin' badges!"</em></h4>
+          <h6><em>"We don't need no stinkin' badges!"</em></h6>
       <% elsif @total_checkins > 0 and @total_checkins <= 4 %>
-          <h4><em>Congratulations! <%#= current_user.stagename %>You've Earned Stars!</em></h4>
+          <h6><em>Congratulations! <%#= current_user.stagename %>You've Earned Stars!</em></h6>
           <p><font color="yellow"><i class="fa fa-star fa-1x"></i></font>  Earned for you're first Check In</p>
       <% elsif @total_checkins >= 5 and @total_checkins <= 9 %>
-          <h4><em><%#= current_user.stagename %>You've earned MORE stars!</em></h4>
+          <h6><em><%#= current_user.stagename %>You've earned MORE stars!</em></h6>
           <p><font color="yellow"><i class="fa fa-star fa-1x"></i></font><font color="purple"><i class="fa fa-star fa-2x"></i></font>  Earned for your 5th Check In!</p>
       <% elsif @total_checkins >= 10 and @total_checkins <= 14 %>
-          <h4><em>Hey, You like this sharaoke stuff, huh?!</em></h4>
+          <h6><em>Hey, You like this sharaoke stuff, huh?!</em></h6>
           <p><font color="yellow"><i class="fa fa-star fa-1x"></i></font><font color="purple"><i class="fa fa-star fa-2x"></i></font><font color="blue"><i class="fa fa-star fa-3x"></i></font>  Earned for your 10th Check In!. Impressive!</p>
       <% elsif @total_checkins >= 15 and @total_checkins <= 19 %>
-          <h4><em>Yo, <%#= current_user.stagename %>, you're killin' it Superstar!</em></h4>
+          <h6><em>Yo, <%#= current_user.stagename %>, you're killin' it Superstar!</em></h6>
           <p><font color="yellow"><i class="fa fa-star fa-1x"></i></font><font color="purple"><i class="fa fa-star fa-2x"></i></font><font color="blue"><i class="fa fa-star fa-3x"></i></font><font color="green"><i class="fa fa-star fa-4x"></i></font>  Earned for you 15th Check In!</p>
       <% elsif @total_checkins >= 20 and @total_checkins <= 99 %>
-          <h4><em>Lookout. I'm blinded by your starlight!</em></h4>
+          <h6><em>Lookout. I'm blinded by your starlight!</em></h6>
           <p><font color="yellow"><i class="fa fa-star fa-1x"></i></font><font color="purple"><i class="fa fa-star fa-2x"></i></font><font color="blue"><i class="fa fa-star fa-3x"></i></font><font color="green"><i class="fa fa-star fa-4x"></i></font><font color="red"><i class="fa fa-star fa-5x"></i></font>  Earned for 20 or more Check Ins. U-R-A Beast!</p>
       <% elsif @total_checkins >= 20 and @total_checkins <= 99 %>
-          <h4><em>Hey, Ummm....<%= current_user.stagename %>, listen... This is kinda difficult for us but we were thinkin... There are support groups for things like this! Or, maybe you're a dj? </em></h4>
+          <h6><em>Hey, Ummm....<%= current_user.stagename %>, listen... This is kinda difficult for us but we were thinkin... There are support groups for things like this! Or, maybe you're a dj? </em></h6>
       <% end %>
   </div>  <!-- End Column -->
 
