@@ -25,7 +25,8 @@
   <div class="col-xs-12 col-sm-12 col-md-4 col-lg-3 isotope-item">
     <div class="panel panel-default">
       <div class="panel-heading">
-        <h3 class="panel-title"><%= venue.name %></h3>
+      <!-- <span class="badge"><%= venue.checkins.count %></span> -->
+        <h3 class="panel-title"><strong><%= venue.name %></strong> <i class="fa fa-glass fa-1x"></i> <%= venue.address %>, <%= venue.city %></h3>
       </div>
       <div class="panel-body">
         <dl>
@@ -33,32 +34,24 @@
           <!-- <div class="container"> -->
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
               <dd align="center"><%= image_tag venue.image, :height => '200px', :width => '200px', :class => 'img-square'  %></dd>
+              <br>
             </div>
-            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-            <!-- </div> -->
-            </p>
-
-            <p align="left"><i class="fa fa-glass fa-1x"></i> <%= venue.address %>, <%= venue.city %></p>
-
-<!--               <dt>Address</dt>
-              <dd><%= venue.address %></dd>
-
-              <dt>City</dt>
-              <dd><%= venue.city %></dd> -->
-            </div>
-          <!-- </div> -->
-
-          <!-- <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p> -->
 
         </dl>
-        <div class="btn-group btn-group-justified">
-          <%= link_to icon('check'), venue, class: "btn btn-success btn-sm" %>
 
-          <% if current_user.is_admin == true or current_user.email == 'philmaclin@gmail.com' %>
-            <%= link_to icon('edit'), edit_venue_url(venue), class: "btn btn-warning" %>
-          <% end %>
+        <div class="col-xs-3 col-xs-offset-2 col-sm-3 col-md-3 col-lg-3">
+          <span class="badge"><%= venue.checkins.count %> Checked in</span>
+        </div>
+        <div class="col-xs-4 col-xs-offset-1 col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-3 col-lg-6 col-lg -offset-3">
+          <div class="btn-group btn-group-justified">
+            <%= link_to icon('check'), venue, class: "btn btn-success btn-sm" %>
 
-          <%#= link_to icon('trash-o'), venue, method: :delete, data: { confirm: "Do you really want to delete this venue?" }, class: "btn btn-danger" %>
+            <% if current_user.is_admin == true or current_user.email == 'philmaclin@gmail.com' %>
+              <%= link_to icon('edit'), edit_venue_url(venue), class: "btn btn-warning" %>
+            <% end %>
+
+            <%#= link_to icon('trash-o'), venue, method: :delete, data: { confirm: "Do you really want to delete this venue?" }, class: "btn btn-danger" %>
+          </div>
         </div>
       </div>
     </div>

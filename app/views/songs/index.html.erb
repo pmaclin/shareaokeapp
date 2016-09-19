@@ -25,34 +25,29 @@
   <div class="col-xs-12 col-sm-12 col-md-4 col-lg-3 isotope-item">
     <div class="panel panel-default">
       <div class="panel-heading">
-        <h3 class="panel-title"><%= song.artist %></h3>
+        <h3 class="panel-title">"<%= song.title %>" by <%= song.artist %> | <%= song.genre %></h3>
       </div>
       <div class="panel-body">
         <dl>
 
-          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-            <dd><%= image_tag song.art, :height => '200px', :width => '200px', :class => 'img-circle'  %></dd>
+          <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+            <%= image_tag song.art, :height => '70px', :width => '70px', :class => 'img-circle'  %>
           </div>
-          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-          </p>
-<!--             <dt>Artist</dt>
-            <dd><%= song.artist %></dd> -->
-
-            <!-- <dt>Title:</dt> -->
-            <!-- <dd> --><p><i class="fa fa-music fa-1x"></i> "<%= song.title %>" | <%= song.genre %></p><!-- </dd> -->
-
-            <!-- <dt>Genre</dt> -->
-    <!--         <dd><%= song.genre %></dd> -->
-          </div>
+<!--           <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+            <i class="fa fa-music fa-1x"></i> "<%= song.title %>" | <%= song.genre %>
+          </div> -->
 
         </dl>
+        <div class="col-xs-6 col-xs-offset-2 col-sm-6 col-sm-offset-2 col-md-6 col-md-offset-2 col-lg-6 col-lg-offset-2">
+          <div class="btn-group btn-group-justified">
+            <%= link_to icon('play-circle'), song, class: "btn btn-primary" %>
 
-        <div class="btn-group btn-group-justified">
-          <%= link_to icon('play-circle'), song, class: "btn btn-primary" %>
-
-          <%= link_to icon('edit'), edit_song_url(song), class: "btn btn-warning" %>
-
-          <%= link_to icon('trash-o'), song, method: :delete, data: { confirm: "Do you really want to delete this song?" }, class: "btn btn-danger" %>
+            <% if current_user.is_admin == true or current_user.email == 'philmaclin@gmail.com' %>
+              <%= link_to icon('edit'), edit_song_url(song), class: "btn btn-warning" %>
+              <%= link_to icon('trash-o'), song, method: :delete, data: { confirm: "Do you really want to delete this song?" }, class: "btn btn-danger" %>
+            <% else %>
+            <% end %>
+          </div>
         </div>
       </div>
     </div>

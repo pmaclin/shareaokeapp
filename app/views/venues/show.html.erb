@@ -3,24 +3,31 @@
   <div class=" col-sm-12  col-md-12 col-lg-offset-0 col-lg-12">
     <div class="panel panel-default">
       <div class="panel-heading">
-        <h3 class="panel-title"><%= @venue.name %></h3>
+        <h3 class="panel-title"><strong><%= @venue.name %></strong> <%= @venue.address %>, <%= @venue.city %></h3>
       </div>
       <div class="panel-body">
         <div class="row">
           <div class="col-sm-6 col-md-6 col-lg-6">
             <dl class="dl-horizontal">
-              <dt>Address</dt>
+<!--               <dt>Address</dt>
               <dd><%= @venue.address %></dd>
 
               <dt>City</dt>
-              <dd><%= @venue.city %></dd>
+              <dd><%= @venue.city %></dd> -->
 
-              <dt>Description</dt>
+              <!-- <dt>Description</dt> -->
               <dd><%= @venue.description %></dd>
 
 <hr>
-             <dt><strong><font color="fffff"><%= @venue.checkins.count %></font></strong></dt>
-             <dd>Performers have checked in @ <%= @venue.name %> tonight!</dd>
+             <div class="container">
+               <div class="col-xs-3 col-xs-offset-2 col-sm-3 col-sm-offset-2 col-md-3 col-md-offset-2 col-lg-3 col-lg-offset-2">
+                 <dt><strong><font color="fffff" size="10"><%= @venue.checkins.count %></font></strong></dt>
+               </div>
+               <div class="col-xs-7 col-xs-offset-0 col-sm-7 col-sm-offset-0 col-md-9 col-md-offset-2 col-lg-9 col-lg-offset-2">
+                 <dd>Performers are checked in @ <%= @venue.name %></dd>
+               </div>
+             </div>
+
           </dl>
 <hr>
     <% if current_user.present? %>
@@ -37,7 +44,7 @@
                           <%# end %>
                 <% else %>
                      <div class="col-lg-12" align="center">
-                          <dt>Check In at <%= @venue.name %> <%= link_to icon('check'), new_checkin_path( :venue_id => params[:id], :user_id => (current_user.id) ), class: "btn btn-lg btn-success" %></dt>
+                          <dt><!-- Check In at  --><%#= @venue.name %> <%= link_to icon('check'), new_checkin_path( :venue_id => params[:id], :user_id => (current_user.id) ), class: "btn btn-lg btn-success" %></dt>
                     </div>
               <% end %>
             </div>
@@ -45,7 +52,8 @@
             </div>
           </div> <!-- end col-md-12 -->
           <div class="col-sm-6" "col-md-6" "col-lg-6">
-            <dt align="center">Welcome to <%= @venue.name %></dt>
+            <!-- <dt align="center">Welcome to <%= @venue.name %></dt> -->
+          </br>
               <div class="main-image-container" align="center">
                 <%= image_tag @venue.image, :height => '250px', :width => '250px', :class => 'img-circle', :alt => 'Image from the Venue' %>
               </div>
