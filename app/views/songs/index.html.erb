@@ -1,6 +1,6 @@
 <div class="page-header">
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-      <h3>Song Library</h3>
+      <h3>Song List</h3>
       <p>Push the play button <%= link_to icon('play-circle') %> to select a track.
       <% if current_user.is_admin == true or current_user.email == 'philmaclin@gmail.com'  %>
         <%= link_to icon('music'), new_song_path, class: "btn btn-lg btn-success" %>
@@ -40,7 +40,7 @@
         </dl>
         <div class="col-xs-6 col-xs-offset-2 col-sm-6 col-sm-offset-2 col-md-6 col-md-offset-2 col-lg-6 col-lg-offset-2">
           <div class="btn-group btn-group-justified">
-            <%= link_to icon('play-circle'), song, class: "btn btn-primary" %>
+            <%= link_to "Request track", song, class: "btn btn-primary" %>
 
             <% if current_user.is_admin == true or current_user.email == 'philmaclin@gmail.com' %>
               <%= link_to icon('edit'), edit_song_url(song), class: "btn btn-warning" %>

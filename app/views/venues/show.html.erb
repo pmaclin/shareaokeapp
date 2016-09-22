@@ -24,7 +24,7 @@
                  <dt><strong><font color="fffff" size="10"><%= @venue.checkins.count %></font></strong></dt>
                </div>
                <div class="col-xs-7 col-xs-offset-0 col-sm-7 col-sm-offset-0 col-md-9 col-md-offset-2 col-lg-9 col-lg-offset-2">
-                 <dd>Performers are checked in @ <%= @venue.name %></dd>
+                 <dd>Check ins @ <%= @venue.name %></dd>
                </div>
              </div>
 
@@ -37,14 +37,14 @@
                 <% if current_user.is_checked_in == true %>
                           <%#= form_tag("/checkins/#{params[:id]}/check_out", method:"post") do %>
                             <div align="center">
-                              <label for="Checkout" align="center" >Checkout of your current location if you want to check in @ <%= @venue.name %> </label>
+                              <label for="Check Out" align="center" >Checkout of your current location to check in here </label>
                                     <!-- <input align="right" type="submit" value="Checkout"> -->
-                                    <p><%= link_to icon('check'),"/checkins/#{params[:id]}/check_out", method:"post", class: "btn btn-lg btn-danger" %></p>
+                                    <p><%= link_to "Checkout","/checkins/#{params[:id]}/check_out", method:"post", class: "btn btn-lg btn-danger" %></p>
                             </div>
                           <%# end %>
                 <% else %>
                      <div class="col-lg-12" align="center">
-                          <dt><!-- Check In at  --><%#= @venue.name %> <%= link_to icon('check'), new_checkin_path( :venue_id => params[:id], :user_id => (current_user.id) ), class: "btn btn-lg btn-success" %></dt>
+                          <dt><!-- Check In at  --><%#= @venue.name %> <%= link_to "Check In", new_checkin_path( :venue_id => params[:id], :user_id => (current_user.id) ), class: "btn btn-lg btn-success" %></dt>
                     </div>
               <% end %>
             </div>

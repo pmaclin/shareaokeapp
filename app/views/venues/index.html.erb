@@ -1,11 +1,11 @@
 <div class="page-header">
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-      <h3>Bar Check In</h3>
+      <h3>Check In</h3>
       <p>Locate your karaoke bar. Click to check in.
       <% if current_user.is_admin == true or current_user.email == 'philmaclin@gmail.com' %>
         <%= link_to icon('glass'), new_venue_path, class: "btn btn-lg btn-success" %>
       <% else %>
-        <i class="fa fa-glass fa-1x"></i></p>
+        <!-- <i class="fa fa-glass fa-1x"></i></p> -->
       <% end %>
     </div>
 </div>
@@ -26,7 +26,7 @@
     <div class="panel panel-default">
       <div class="panel-heading">
       <!-- <span class="badge"><%= venue.checkins.count %></span> -->
-        <h3 class="panel-title"><strong><%= venue.name %></strong> <i class="fa fa-glass fa-1x"></i> <%= venue.address %>, <%= venue.city %></h3>
+        <h3 class="panel-title"><span class="badge"><i class="fa fa-check fa-1x"></i><%= venue.checkins.count %></span>  <strong><%= venue.name %></strong> <i class="fa fa-glass fa-1x"></i> <%= venue.address %>, <%= venue.city %></h3>
       </div>
       <div class="panel-body">
         <dl>
@@ -39,12 +39,12 @@
 
         </dl>
 
-        <div class="col-xs-3 col-xs-offset-2 col-sm-3 col-md-3 col-lg-3">
-          <span class="badge"><%= venue.checkins.count %> Checked in</span>
-        </div>
+<!--         <div class="col-xs-3 col-xs-offset-2 col-sm-3 col-md-3 col-lg-3">
+          <span class="badge"><%= venue.checkins.count %></span>
+        </div> -->
         <div class="col-xs-4 col-xs-offset-1 col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-3 col-lg-6 col-lg -offset-3">
           <div class="btn-group btn-group-justified">
-            <%= link_to icon('check'), venue, class: "btn btn-success btn-sm" %>
+            <%= link_to "Check In", venue, class: "btn btn-success btn-sm" %>
 
             <% if current_user.is_admin == true or current_user.email == 'philmaclin@gmail.com' %>
               <%= link_to icon('edit'), edit_venue_url(venue), class: "btn btn-warning" %>

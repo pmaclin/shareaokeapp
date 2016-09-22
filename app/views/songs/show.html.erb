@@ -4,24 +4,24 @@
   <div class="col-sm-offset-1 col-sm-10 col-md-offset-2 col-md-8">
     <div class="panel panel-default">
       <div class="panel-heading">
-        <h3 class="panel-title">Your Selection: Song #<%= @song.id %></h3>
+        <h3 class="panel-title">Your Selection: "<%= @song.title %>" by <%= @song.artist %> | <%= @song.genre %></h3>
       </div>
       <div class="panel-body">
         <div class="row">
           <div class="col-md-12">
             <dl class="dl-horizontal">
-              <dt>Artist</dt>
-              <dd><%= @song.artist %></dd>
+<!--               <dt>Artist</dt>
+              <dd><%= @song.artist %></dd> -->
 
-              <dd><%= image_tag @song.art, :height => '200px', :width => '200px', :class => 'img-circle'  %></dd>
+              <dd align="center"><%= image_tag @song.art, :height => '200px', :width => '200px', :class => 'img-circle'  %></dd>
 
-              <dt>Title</dt>
-              <dd><%= @song.title %></dd>
-
+<!--               <dt>Title</dt>
+              <dd><%= @song.title %></dd> -->
+<!--
               <dt>Genre</dt>
-              <dd><%= @song.genre %></dd>
+              <dd><%= @song.genre %></dd> -->
 
-              <dt>Lyrics</dt>
+              <dt>Lyrics:</dt>
               <dd><%= @song.lyrics %></dd>
 
             <hr>
@@ -32,14 +32,14 @@
             <% if @hr.present? %>
             <%#= redirect_to :root, notice: "Hey...slow your roll Superstar! You can only make one request at-a-time between performances." %>
 
-            <h1 align="center">"Ooops!"</h1>
-            <p><%= current_user.stagename %>, looks like you currently have a song in the request queue. You have to wait for the dj to clear it from the queue <em>before<em> you can request another.</p>
+            <h3 align="center">"Ooops!"</h3>
+            <p><%= current_user.stagename %>, you currently have a song in the request queue. Wait for the dj to clear it from the queue <em>before<em> you can request another.</p>
               <p><%= link_to icon('thumbs-down'), '/', class: "btn btn-danger" %></p>
 
             <% else %>
 
-            <strong align="center">Confirm your request for </strong>"<%= @song.title %>" by <%= @song.artist %>
-              <p><%= link_to icon('thumbs-up'), new_request_path(:song_id => params[:id], :user_id => (current_user.id), :venue_id => (current_user.checkin.venue_id) ), class: "btn btn-success" %></p>
+            <!-- <strong align="center">Confirm your request</strong><p></p> --><%#= @song.title %> <%#= @song.artist %>
+              <p><%= link_to "Confirm your Request", new_request_path(:song_id => params[:id], :user_id => (current_user.id), :venue_id => (current_user.checkin.venue_id) ), class: "btn btn-success" %></p>
 
 <!--               <strong align="center">Confirm your request for </strong><%= @song.title %> by <%#= @song.artist %>
               <%#= link_to icon('thumbs-up'), new_request_path(@song), class: "btn btn-success" %> -->
