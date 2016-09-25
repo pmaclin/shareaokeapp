@@ -50,8 +50,23 @@ class CheckinsController < InheritedResources::Base
         ## make current venue as user checkin
         current_venue = Venue.find(params[:id])
         Checkin.create(user_id:current_user.id,venue_id:current_venue.id,is_checked_in:true)
-        notice_message = "You've just checked out of #{bar_name} and checked in @ #{current_venue.name} "
+        notice_message = "You've just checked out of #{bar_name} and checked into #{current_venue.name} "
       end
+    end
+    redirect_to :back, notice: notice_message
+  end
+
+  def checked_out
+    @checkin = Checkin.where(venue_id:params[:id],is_checked_in:true).first
+    notice_message = ""
+    if @checkin.present?
+      @checkin.user = current_user
+      @checkin.is_checked_in = false
+      current_user.is_checked_in = false
+      current_user.save
+      @checkin.save
+      notice_message =  "You've just checked out. Real nice champ!"
+      else
     end
     redirect_to :back, notice: notice_message
   end
@@ -82,4 +97,3 @@ class CheckinsController < InheritedResources::Base
     end
 
 end
-

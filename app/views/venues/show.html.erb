@@ -3,7 +3,7 @@
   <div class=" col-sm-12  col-md-12 col-lg-offset-0 col-lg-12">
     <div class="panel panel-default">
       <div class="panel-heading">
-        <h3 class="panel-title"><strong><%= @venue.name %></strong> <%= @venue.address %>, <%= @venue.city %></h3>
+        <h3 class="panel-title"><span class="badge"><i class="fa fa-check fa-1x"></i><%= @venue.checkins.count %></span> <strong><%= @venue.name %></strong> <%= @venue.address %>, <%= @venue.city %></h3>
       </div>
       <div class="panel-body">
         <div class="row">
@@ -19,17 +19,17 @@
               <dd><%= @venue.description %></dd>
 
 <hr>
-             <div class="container">
+<!--              <div class="container">
                <div class="col-xs-3 col-xs-offset-2 col-sm-3 col-sm-offset-2 col-md-3 col-md-offset-2 col-lg-3 col-lg-offset-2">
-                 <dt><strong><font color="fffff" size="10"><%= @venue.checkins.count %></font></strong></dt>
+                 <dt><strong><font color="fffff" size="10"><%#= @venue.checkins.count %></font></strong></dt>
                </div>
                <div class="col-xs-7 col-xs-offset-0 col-sm-7 col-sm-offset-0 col-md-9 col-md-offset-2 col-lg-9 col-lg-offset-2">
-                 <dd>Check ins @ <%= @venue.name %></dd>
+                 <dd>Check ins @ <%#= @venue.name %></dd>
                </div>
-             </div>
+             </div> -->
 
           </dl>
-<hr>
+
     <% if current_user.present? %>
             <div class="row">
             <div class="col-sm-offset-1 col-sm-12 col-md-offset-2 col-md-12 col-lg-offset-0 col-lg-12">
@@ -37,10 +37,20 @@
                 <% if current_user.is_checked_in == true %>
                           <%#= form_tag("/checkins/#{params[:id]}/check_out", method:"post") do %>
                             <div align="center">
-                              <label for="Check Out" align="center" >Checkout of your current location to check in here </label>
-                                    <!-- <input align="right" type="submit" value="Checkout"> -->
-                                    <p><%= link_to "Checkout","/checkins/#{params[:id]}/check_out", method:"post", class: "btn btn-lg btn-danger" %></p>
-                            </div>
+                              <%# if current_user.is_checked_in == true %>
+                                <% @ci = Checkin.where({ :user_id => current_user.id}) %>
+                                  <% if @ci.present? and @ci.last.venue.name != @venue.name %>
+                                    <label for="Check Out" align="center" >You're currently checked in @ <p><strong><a href="/venues/<%= @ci.last.venue.try(:id) %>"><%= @ci.last.venue.try(:name) %></a></strong></p></label>
+                                      <!-- <input align="right" type="submit" value="Checkout"> -->
+                                      <p><%= link_to "Check In Here","/checkins/#{params[:id]}/check_out", method:"post", class: "btn btn-lg btn-warning" %></p>
+                                <% else %>
+
+                                  <div class="col-lg-12" align="center">
+                                        <p><%= link_to "Check Out","/checkins/#{params[:id]}/checked_out", method:"post", class: "btn btn-lg btn-danger" %></p>
+                                  </div>
+
+                                <% end %>
+                              </div>
                           <%# end %>
                 <% else %>
                      <div class="col-lg-12" align="center">

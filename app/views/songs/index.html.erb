@@ -1,13 +1,24 @@
 <div class="page-header">
-    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+  <div class="col-sm-6 col-md-6 col-lg-4">
+        <% if current_user.is_checked_in == true %>
+        <% @ci = Checkin.where({ :user_id => current_user.id}) %>
+          <% if @ci.present? %>
+            <p>You're checked in @ <strong><a href="/venues/<%= @ci.last.venue.try(:id) %>"><%= @ci.last.venue.try(:name) %></a></strong></p>
+            <p><%= image_tag current_user.avatar, height: '50px', width: '50px', :class => 'img-circle' %>
+            <%= image_tag @ci.last.venue.try(:image), height: '50px', width: '50px', :class => 'img-circle' %></p>
+          <% end %>
+        <% else %>
+          <p align="left"><h6>You're not currently checked in to a bar. Check in below:</h6></p>
+        <% end %>
+    </div>
       <h3>Song List</h3>
-      <p>Push the play button <%= link_to icon('play-circle') %> to select a track.
+      <p>Click<%#= link_to icon('play-circle') %> the blue button to select a track.
       <% if current_user.is_admin == true or current_user.email == 'philmaclin@gmail.com'  %>
         <%= link_to icon('music'), new_song_path, class: "btn btn-lg btn-success" %>
       <% else %>
         <i class="fa fa-music fa-1x"></i></p>
       <% end %>
-    </div>
+<!--     </div> -->
 </div>
 
 <!-- Responsive, Isotope-based layout example -->
