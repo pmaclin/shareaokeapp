@@ -39,7 +39,7 @@
             <% else %>
 
             <!-- <strong align="center">Confirm your request</strong><p></p> --><%#= @song.title %> <%#= @song.artist %>
-              <p><%= link_to "Confirm your Request", new_request_path(:song_id => params[:id], :user_id => (current_user.id), :venue_id => (current_user.checkin.venue_id) ), class: "btn btn-success" %></p>
+              <p><%= link_to icon('music'), "/songs", class: "btn btn-warning" %> <%= link_to "Confirm your Request", new_request_path(:song_id => params[:id], :user_id => (current_user.id), :venue_id => (current_user.checkin.venue_id) ), class: "btn btn-success" %>  <%= link_to icon('glass'), "/venues", class: "btn btn-primary" %></p>
 
 <!--               <strong align="center">Confirm your request for </strong><%= @song.title %> by <%#= @song.artist %>
               <%#= link_to icon('thumbs-up'), new_request_path(@song), class: "btn btn-success" %> -->
