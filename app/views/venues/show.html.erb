@@ -46,7 +46,8 @@
                                 <% else %>
 
                                   <div class="col-lg-12" align="center">
-                                        <p><%= link_to "Check Out","/checkins/#{params[:id]}/checked_out", method:"post", class: "btn btn-lg btn-danger" %></p>
+                                        <p><%= link_to "Check Out?","/checkins/#{params[:id]}/checked_out", method:"post", class: "btn btn-lg btn-danger" %></p>
+                                        <p>Checking out of this bar will lose your place in the request queue.</p>
                                   </div>
 
                                 <% end %>
@@ -163,16 +164,16 @@
                       <dt align="left"> -->
                       <%= performance.user.stagename %> <%= performance.created_at.strftime("performed on %B %d at %I: %M %p") %>
                       </dt>
-<!--                     <div align="left">
+               <div align="left">
                       <span><a href="#">Rate this performance?</a></span>
                         <div class="inline-rating">
-                          <i class="fa fa-microphone fa-2x"></i>
-                          <i class="fa fa-microphone fa-2x"></i>
-                          <i class="fa fa-microphone fa-2x"></i>
-                          <i class="fa fa-microphone fa-2x"></i>
-                          <i class="fa fa-microphone fa-2x"></i>
+                          <i class="fa fa-star fa-2x"></i>
+                          <i class="fa fa-star fa-2x"></i>
+                          <i class="fa fa-star fa-2x"></i>
+                          <i class="fa fa-star fa-2x"></i>
+                          <i class="fa fa-star fa-2x"></i>
                         </div>
-                    </div> -->
+                    </div>
                     </li>
                   <% end %> <!-- end if -->
               </ul>
@@ -183,7 +184,7 @@
     </div> <!-- end panel panel-default -->
 </div>
 
-<!-- RIGHT HAND COLUMN -->
+<!-- RIGHT HAND AD BLOCK COLUMN -->
 <div class="col-xs-12 col-md-12 col-lg-6">
   <div class="panel panel-default">
     <div class="panel-heading">

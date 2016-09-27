@@ -22,7 +22,7 @@ class RequestsController < InheritedResources::Base
       @request.available = true
       @request.has_requested = true
       @request.save
-      redirect_to :root, notice: "Cool! You're request is in. The DJ will let you know when you're up!"
+      redirect_to :back, notice: "Cool! You're request is in. The DJ will let you know when you're up!"
     end
   end
 

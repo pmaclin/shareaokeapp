@@ -17,17 +17,18 @@
         <dl>
     <%# if performance.completed == false %>
 
-            <dt>Performer</dt>
+            <!-- <dt>Performer</dt> -->
             <dd><%= performance.user.stagename %></dd>
 
             <dd><%= image_tag performance.user.avatar, :height => '50px', :width => '50px', :class => 'img-square' %></dd>
 
-            <dt>Song</dt>
+            <!-- <dt>Song</dt> -->
             <dd>"<%= performance.song.title %>", originally performed by <%= performance.song.artist %></dd>
 
-
             <div class="btn-group btn-group-justified">
-              <%= link_to icon('search-plus'), performance, class: "btn btn-primary" %>
+            <p>DJ - When the performance is done, click the green button.</p>
+              <p><%= link_to "Performance Completed!", edit_performance_url(performance), class: "btn btn-success" %>
+              <%= link_to icon('search-plus'), performance, class: "btn btn-primary" %></p>
           </div>
 
     <% elsif performance.completed == true %>

@@ -25,11 +25,13 @@ class PerformancesController < ApplicationController
     @performance.completed = false
     @performance.save
     @performance.remove_request
-    redirect_to :performances, notice: "Well Done DJ! This request is in the performance queue below."
+    redirect_to :back, notice: "Well Done DJ! This request is in the performance queue below."
   end
 
   # GET /performances/1/edit
   def edit
+    # @user = User.find(params[:user_id])
+    @performance = Performance.find(params[:id])
     @performance.completed = true
     @performance.save
     redirect_to :performances, notice: "Nice, Mr. DJ! Now go to the next performer in the queue!"

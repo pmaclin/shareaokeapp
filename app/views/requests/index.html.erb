@@ -1,9 +1,11 @@
 <div class="page-header">
   <h1>
-    Requests<i class="fa fa-question fa-lg" ></i><small>  <%= current_user.checkin.venue.try(:name) %></small>
+    Requests<i class="fa fa-question fa-md" ></i><small>  <%= current_user.checkin.venue.try(:name) %></small>
     <%#= link_to icon('music'), '#', class: "btn btn-lg btn-success" %>
   </h1>
+  <p>To do: [Link this back to @venue...]</p>
 </div>
+
 
 <div class="row isotope-container">
   <% @requests.uniq.each do |request| %>
@@ -49,11 +51,11 @@
 
                   <%# if current_user.is_dj == true %>
                           <div class="btn-group btn-group-justified">
-                            <%= link_to icon('microphone'), new_performance_path( :song_id => (request.song_id), :user_id => (request.user_id), :venue_id => (request.venue_id) ), data: { confirm: "Hey DJ - If this performer is done you can send them over to the performance queue by clicking 'Ok' below. Coolio?" }, class: "btn btn-success" %>
+                            <p><%= link_to "Advance to Performances", new_performance_path( :song_id => (request.song_id), :user_id => (request.user_id), :venue_id => (request.venue_id) ), data: { confirm: "Hey DJ - If this performer is done you can send them over to the performance queue by clicking 'Advance to Performance' below. Coolio?" }, class: "btn btn-success" %></p>
 
-                            <%= link_to icon('close'), edit_request_path(request), class: "btn btn-danger" %>
+                            <p><%= link_to "Remove from Queue", edit_request_path(request), class: "btn btn-info" %></p>
 
-                            <%= link_to icon('minus'), request, method: :delete, data: { confirm: "Do you really want to delete this request?" }, class: "btn btn-warning" %>
+                            <p><%= link_to "Delete this Request", request, method: :delete, data: { confirm: "Do you really want to delete this request?" }, class: "btn btn-danger" %></p>
                           </div>
                   <%# end %>
             </div> <!-- panel body -->
