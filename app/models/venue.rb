@@ -1,4 +1,5 @@
 class Venue < ActiveRecord::Base
+
   mount_uploader :image, ImageUploader
 
   # We should be able to bring back a list of checkins on the Venue object

@@ -1,4 +1,7 @@
 class User < ActiveRecord::Base
+
+  ratyrate_rater
+
   mount_uploader :avatar, AvatarUploader
 
   # Include default devise modules. Others available are:

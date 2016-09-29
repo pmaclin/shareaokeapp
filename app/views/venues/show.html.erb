@@ -117,7 +117,7 @@
 
 
 
-<!-- REQUEST QUEUE -->
+<!-- REQUEST BLOCK -->
     <div class="panel panel-default">
       <div class="panel-heading">
         <h3 class="panel-title">Request Queue</h3>
@@ -146,7 +146,7 @@
     </div> <!-- end panel panel-default -->
 
 
-<!-- PERFORMANCE QUEUE -->
+<!-- PERFORMANCE BLOCK -->
     <div class="panel panel-default">
       <div class="panel-heading">
         <h3 class="panel-title">Performance Queue</h3>
@@ -164,16 +164,27 @@
                       <dt align="left"> -->
                       <%= performance.user.stagename %> <%= performance.created_at.strftime("performed on %B %d at %I: %M %p") %>
                       </dt>
+                      <br>
                <div align="left">
-                      <span><a href="#">Rate this performance?</a></span>
-                        <div class="inline-rating">
-                          <i class="fa fa-star fa-2x"></i>
-                          <i class="fa fa-star fa-2x"></i>
-                          <i class="fa fa-star fa-2x"></i>
-                          <i class="fa fa-star fa-2x"></i>
-                          <i class="fa fa-star fa-2x"></i>
-                        </div>
-                    </div>
+                     <!-- <span><a href="/performances/<%#= performance.try(:id) %>">Rate this performance</a></span> -->
+                     <dt>Rate this performance:</dt>
+
+                     <dt>
+                      <%#= rating_for_user performance, current_user, 'vocals', star: 5 %>
+                    </dt>
+                    <dt>
+                      <%#= imdb_style_rating_for performance, current_user %>
+                    </dt>
+                    <dd>
+                      Vocals Stylings: <%= rating_for performance, 'vocals', disable_after_rate: true, imdb_avg: false, enable_half: true, cancel: true, cancel_hint: 'Cancel this rating!' %>
+                    </dd>
+                    <dd>
+                      Swagger Meter: <%= rating_for performance, 'swagger', disable_after_rate: true, imdb_avg: false, enable_half: true, cancel: true, cancel_hint: 'Cancel this rating!' %>
+                    </dd>
+                    <dd>
+
+                    </dd>
+                </div>
                     </li>
                   <% end %> <!-- end if -->
               </ul>

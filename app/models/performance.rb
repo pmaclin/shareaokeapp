@@ -1,4 +1,7 @@
 class Performance < ActiveRecord::Base
+
+  ratyrate_rateable 'vocals', 'swagger', 'fearlessness'
+
   belongs_to :user
   belongs_to :song
   belongs_to :venue

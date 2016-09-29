@@ -13,6 +13,9 @@ gem 'activeadmin', github: 'activeadmin'
 gem 'figaro'
 gem 'pg',             '0.17.1'
 
+# Ratyrate gem
+gem 'ratyrate', :github => 'wazery/ratyrate', :branch => 'master'
+
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5.2'

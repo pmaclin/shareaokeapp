@@ -20,15 +20,43 @@
             <hr>
 
               <% if @performance.completed == false && current_user.is_dj == true %>
-              <p align="center">Hey DJ! You can't leave a review but you can click on the "X" button to disable any more reviews from being left by fans. Click on the "back" button to go back to the performance index page.</p>
-              <div class="btn-group btn-group-justified">
+                <p align="center">Hey DJ! You can't leave a review but you can click on the "X" button to disable any more reviews from being left by fans. Click on the "back" button to go back to the performance index page.</p>
+                <div class="btn-group btn-group-justified">
                     <%= link_to icon('close'), edit_performance_path(), class: "btn btn-danger" %>
                     <%= link_to icon('backward'), :performances, class: "btn btn-primary" %>
               <% else %>
                   <p align="center">Rate this performance</p>
-                  <p align ="center"><%= link_to icon('pencil'), new_review_path( :performance_id => params[:id] ), class: "btn btn-lg btn-success" %></p>
+                    <dt>
+                      Vocals: <%= rating_for @performance, 'vocals', disable_after_rate: true, enable_half: true, cancel: true, cancel_hint: 'Cancel this rating!' %>
+                    </dt>
+                    <dt>
+                      Swagger Meter: <%= imdb_style_rating_for @performance, 'swagger', disable_after_rate: true, enable_half: true, cancel: true, cancel_hint: 'Cancel this rating!' %>
+                    </dt>
+                    <dd>
+                      Total Average Meter: <%#= rating_for @performance, 'vocals', disable_after_rate: true, imdb_avg: true %>
+                    </dd>
+                    <br>
+                  <div class="col-md-6">
+                    <dt><%= link_to "Back", :back, class: "btn btn-md btn-success" %></dt>
+                  </div>
+
                 <% end %>
+
+
+              <br>
+                  <div class="col-md-6">
+                    <dt><%#= link_to "Back", :back, class: "btn btn-md btn-success" %></dt>
+                  </div>
+                  <div class="col-md-6">
+                    <dt>
+                      <%#= rating_for_user @performance, current_user, 'vocals', star: 5 %>
+                    </dt>
+                    <dt>
+                      <%#= imdb_style_rating_for @performance, current_user, disable_after_rate: true, imdb_avg: true %>
+                    </dt>
+                  </div>
               </div>
+
             <div class="col-sm-12 col-md-4 col-lg-12">
               <div class="panel-heading"><h3 class="panel-title"><%= @performance.reviews.count %> Review(s)</h3></div>
               <% @performance.reviews.each do |review| %>
@@ -49,6 +77,7 @@
                 <% end %>
 
               <% end %> <!-- end do loop -->
+
             </div> <!-- end div col for review section -->
 
           </div>
